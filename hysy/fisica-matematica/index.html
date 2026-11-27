@@ -3,8 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAM HYSY — Indice Fisica e Matematica</title>
+  <title>TRAM HYSY — Scienze · Fisica e Matematica</title>
   <link rel="stylesheet" href="../../css/style.css" />
+  <style>
+    .sci-fm-hero {
+      text-align: center;
+      padding: 40px 20px 32px;
+      border-bottom: 1px solid var(--border-silver);
+      background:
+        radial-gradient(circle at 50% 24%, rgba(248, 250, 252, 0.34) 0%, rgba(203, 213, 225, 0.16) 38%, rgba(5, 5, 8, 0) 72%),
+        var(--bg);
+    }
+
+    .sci-fm-kicker {
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #f8fafc;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .silver-luminous-stage {
+      width: 156px;
+      height: 156px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.92) 0%, rgba(226, 232, 240, 0.52) 48%, rgba(148, 163, 184, 0.12) 72%, transparent 100%);
+      box-shadow:
+        0 0 38px rgba(248, 250, 252, 0.42),
+        0 0 72px rgba(203, 213, 225, 0.24);
+    }
+
+    .silver-coin-frame {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 45%, #f1f5f9 75%, #64748b 100%);
+      box-shadow: 0 0 22px rgba(255, 255, 255, 0.45);
+    }
+
+    .silver-coin-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #0b0e14;
+    }
+
+    .sci-fm-title {
+      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 10px;
+    }
+
+    .sci-fm-lead {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,143 +83,151 @@
       <ul class="nav-links">
         <li><a href="../../index.html" class="c-home">Home</a></li>
         <li><a href="../../deng/" class="c-gold">Politica</a></li>
-        <li><a href="../" class="c-silver">HYSY</a></li>
-        <li><a href="./" class="c-silver">Fisica &amp; Matematica</a></li>
+        <li><a href="../" class="c-silver">Scienza</a></li>
         <li><a href="../../nugae/" class="c-bronze">Poesia</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="container">
-    <p class="kicker">HYSY · Sottocartella Fisica e Matematica</p>
-    <h1>Indice di Fisica e Matematica</h1>
-    <p class="lead">
-      Indice e sintesi dei sottoparagrafi all'interno di <code>hysy/fisica-matematica/</code>: dalla Stele di Rosetta e l'algebra ipersimmetrica fino alla precipitazione metrica, al potenziale <em>Q</em> e all'equazione principe.
-    </p>
-
-    <nav class="summary-box" aria-label="Indice dei sottoparagrafi">
-      <p class="summary-title">Indice dei sottoparagrafi</p>
-      <div class="toc">
-        <a href="#stele">1. Stele di Rosetta &amp; Primitivi</a>
-        <a href="#algebra">2. Scissione, Algebra &amp; Z_top</a>
-        <a href="#fisica">3. Saturazione, Spazio-Tempo &amp; Massa</a>
-        <a href="#matematica">4. Derivazione Quantistica &amp; Q</a>
-        <a href="#sintesi">5. Equazione Principe &amp; Chiusura</a>
+  <main>
+    <section class="sci-fm-hero">
+      <p class="sci-fm-kicker">Scienze</p>
+      <div class="silver-luminous-stage">
+        <div class="silver-coin-frame">
+          <img src="../../assets/img/hysy.jpg" alt="Moneta Argento — Scienze" />
+        </div>
       </div>
-    </nav>
-
-    <section id="stele" class="study-block">
-      <h2>1. Rifiuto degli Assoluti Statici e Stele di Rosetta</h2>
-      <p>
-        Il framework <strong>HYSY</strong> (<em>HyperSymmetric Quantum Theory</em>) assume la correlazione e il divenire omeodinamico come base, rifiutando identit&agrave; statica (=), vuoto/zero assoluto (0) e infiniti inerti. Al loro posto introduce una soglia minima irriducibile di pulsazione (&delta;<sub>0</sub>) e operatori relazionali, conservando gli operatori del calcolo differenziale (&nabla;, <em>d</em>, &int;) in quanto nativamente dinamici.
-      </p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Simbolo classico (omeostatico)</th>
-              <th>Operatore HYSY (omeodinamico)</th>
-              <th>Significato nel modello</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>= (uguaglianza statica)</td>
-              <td>&equiv; / &rightleftharpoons;</td>
-              <td>Identit&agrave; strutturale o equilibrio oscillante in divenire</td>
-            </tr>
-            <tr>
-              <td>0 (zero / nulla assoluto)</td>
-              <td>&delta;<sub>0</sub></td>
-              <td>Pulsazione evanescente: limite minimo non nullo, assenza di vuoto assoluto</td>
-            </tr>
-            <tr>
-              <td>&minus; (sottrazione inerte)</td>
-              <td>&Theta;</td>
-              <td>Scarto ontologico: contrasto asimmetrico e tensione direzionale</td>
-            </tr>
-            <tr>
-              <td>&times; (moltiplicazione)</td>
-              <td>&ll; / &gg; / &bowtie;</td>
-              <td>Correlazione intrinseca o aggancio relazionale tra potenzialit&agrave;</td>
-            </tr>
-            <tr>
-              <td>+ (addizione quantitativa)</td>
-              <td>&oplus;</td>
-              <td>Integrazione relazionale: confluenza dinamica in un nuovo assetto</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <ul>
-        <li><strong>Dominio supremo (&Omega;):</strong> l'<em>&Aacute;peiron</em> come insieme omeodinamico delle potenzialit&agrave; (&Omega; &not;&equiv; &empty;).</li>
-        <li><strong>Dualit&agrave; ipersimmetrica (&sect;):</strong> ogni potenzialit&agrave; <em>X</em> &isin; &Omega; ha una controparte duale sottolineata <u>X</u> &isin; &Omega;, con involutivit&agrave; (<u><u>X</u></u> &equiv; <em>X</em>) e conservazione del peso ontologico <em>W</em>.</li>
-        <li><strong>Conservazione dell'indeterminazione:</strong> nessuna correlazione ipersimmetrica pu&ograve; collassare in &delta;<sub>0</sub> o divergere.</li>
-      </ul>
-    </section>
-
-    <section id="algebra" class="study-block">
-      <h2>2. Scissione del Plenum, Non Commutativit&agrave; e Impedenza Topologica (Z_top)</h2>
-      <p>
-        Nel Plenum ordinato &Theta;<sub><em>k</em></sub> &subset; &Omega;, il nodo di <strong>Ipertriade Neutra (ITN)</strong> bilancia le correlazioni coniugate. Quando la tensione supera la soglia critica, l'operatore di scissione <strong>&Xi;<sub>&oplus;</sub></strong> polarizza il dominio in un settore di emersione (<strong>Dominio Yang</strong> &Theta;<sub><em>k</em></sub><sup>+</sup>) e in uno coniugato di latenza (&Theta;<sub><em>k</em></sub><sup>&minus;</sup>).
-      </p>
-      <h3>Asimmetria tra Azione (K) e Latenza (&eta;)</h3>
-      <p>
-        Nel dominio Yang l'azione <em>K</em> e la reazione latente <u>&eta;</u> non commutano (<em>K</em> &gg; <u>&eta;</u> &not;&equiv; <u>&eta;</u> &ll; <em>K</em>). Il contrasto direzionale genera uno <strong>scarto ontologico</strong> il cui residuo minimo universale &egrave; l'<strong>impedenza topologica</strong> <em>Z</em><sub>top</sub>:
-      </p>
-      <div class="formula-box">
-        &Theta;(K, <u>&eta;</u>) := (K &gg; <u>&eta;</u>) &Theta; (<u>&eta;</u> &gg; K) &equiv; Z<sub>top</sub> &nbsp;&nbsp; (con Z<sub>top</sub> &not;&equiv; &delta;<sub>0</sub>)
-      </div>
-      <p>
-        Per il teorema di rappresentazione fedele &rho; su uno spazio di Hilbert &Hscr;, lo scarto relazionale si traduce in commutatore operatoriale: se <em>Z</em><sub>top</sub> siede al centro dell'algebra delle correlazioni, la sua immagine si lega al commutatore canonico quantistico.
+      <h1 class="sci-fm-title">Fisica e Matematica</h1>
+      <p class="sci-fm-lead">
+        Indice dei sottoparagrafi all'interno di <code>hysy/fisica-matematica/</code>: dalla Stele di Rosetta e l'algebra ipersimmetrica fino alla precipitazione metrica, al potenziale <em>Q</em> e all'equazione principe.
       </p>
     </section>
 
-    <section id="fisica" class="study-block">
-      <h2>3. Transizione Metrica: Quanto d'Azione, Spazio, Tempo e Massa</h2>
-      <p>
-        L'impedenza topologica <em>Z</em><sub>top</sub> non pu&ograve; accumularsi all'infinito nel dominio pre-metrico. Raggiunta la soglia di saturazione, il sistema &laquo;estrude&raquo; grandezze fisiche osservabili: &egrave; la <strong>precipitazione metrica</strong>.
-      </p>
-      <ul>
-        <li><strong>Quanto d'azione (&hbar;):</strong> la saturazione di <em>Z</em><sub>top</sub> si cristallizza nella costante di Planck ridotta (&hbar;), intesa come memoria strutturale dell'asimmetria relazionale.</li>
-        <li><strong>Spazio (S):</strong> non un contenitore vuoto, ma la &laquo;distanza di sicurezza&raquo; / membrana in tensione che separa le polarit&agrave; per evitarne il collasso.</li>
-        <li><strong>Tempo (T):</strong> misura del ritardo operativo e dell'ordine sequenziale imposto dall'asimmetria dell'interazione.</li>
-        <li><strong>Massa e Materia (Infoforma I):</strong> la sintesi informazionale <em>I</em> &rightleftharpoons; (Y &gg; <u>Y</u>) nel dominio Yang, agganciata alla geometria estrusa, oppone resistenza alle variazioni: ci&ograve; che misuriamo come inerzia e massa &egrave; un nodo relazionale stabile legato al settore latente.</li>
-      </ul>
-    </section>
+    <div class="container">
+      <nav class="summary-box" aria-label="Indice dei sottoparagrafi">
+        <p class="summary-title">Indice dei sottoparagrafi</p>
+        <div class="toc">
+          <a href="#stele">1. Stele di Rosetta &amp; Primitivi</a>
+          <a href="#algebra">2. Scissione, Algebra &amp; Z_top</a>
+          <a href="#fisica">3. Saturazione, Spazio-Tempo &amp; Massa</a>
+          <a href="#matematica">4. Derivazione Quantistica &amp; Q</a>
+          <a href="#sintesi">5. Equazione Principe &amp; Chiusura</a>
+        </div>
+      </nav>
 
-    <section id="matematica" class="study-block">
-      <h2>4. Derivazione Quantistica e Potenziale Geometrico Q</h2>
-      <p>
-        Nella fase metrica, l'azione e la latenza si proiettano su operatori hermitiani (posizione x&#770; e impulso p&#770; = &minus;i&hbar;&nabla;), dando origine alla relazione di commutazione canonica [x&#770;, p&#770;] = i&hbar; e all'equazione di Schr&ouml;dinger dipendente dal tempo:
-      </p>
-      <div class="formula-box">
-        i&hbar; &part;&psi;/&part;t &equiv; &minus;(&hbar;&sup2; / 2<u>m</u>) &nabla;&sup2;&psi; + V(x)&psi;
-      </div>
-      <h3>Trasformazione di Madelung e Potenziale Q</h3>
-      <p>
-        Scrivendo la funzione d'onda in forma polare &psi; &equiv; R e<sup>iS/&hbar;</sup> (con densit&agrave; &rho; &equiv; R&sup2; e fase/azione S) e separando parte immaginaria e parte reale, si ottiene l'equazione di continuit&agrave; e un'equazione di Hamilton-Jacobi modificata dal <strong>potenziale quantistico</strong> <em>Q</em>:
-      </p>
-      <div class="formula-box">
-        Q &equiv; &minus;(&hbar;&sup2; / 2<u>m</u>) (&nabla;&sup2;R / R)
-      </div>
-      <p>
-        Nel quadro HYSY, <em>Q</em> esprime la pressione geometrica e topologica esercitata dal settore latente sulla metrica emersa: la geometria quantistica riflette la tensione relazionale che impedisce il collasso commutativo.
-      </p>
-    </section>
+      <section id="stele" class="study-block">
+        <h2>1. Rifiuto degli Assoluti Statici e Stele di Rosetta</h2>
+        <p>
+          Il framework <strong>HYSY</strong> (<em>HyperSymmetric Quantum Theory</em>) assume la correlazione e il divenire omeodinamico come base, rifiutando identit&agrave; statica (=), vuoto/zero assoluto (0) e infiniti inerti. Al loro posto introduce una soglia minima irriducibile di pulsazione (&delta;<sub>0</sub>) e operatori relazionali, conservando gli operatori del calcolo differenziale (&nabla;, <em>d</em>, &int;) in quanto nativamente dinamici.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Simbolo classico (omeostatico)</th>
+                <th>Operatore HYSY (omeodinamico)</th>
+                <th>Significato nel modello</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>= (uguaglianza statica)</td>
+                <td>&equiv; / &rightleftharpoons;</td>
+                <td>Identit&agrave; strutturale o equilibrio oscillante in divenire</td>
+              </tr>
+              <tr>
+                <td>0 (zero / nulla assoluto)</td>
+                <td>&delta;<sub>0</sub></td>
+                <td>Pulsazione evanescente: limite minimo non nullo, assenza di vuoto assoluto</td>
+              </tr>
+              <tr>
+                <td>&minus; (sottrazione inerte)</td>
+                <td>&Theta;</td>
+                <td>Scarto ontologico: contrasto asimmetrico e tensione direzionale</td>
+              </tr>
+              <tr>
+                <td>&times; (moltiplicazione)</td>
+                <td>&ll; / &gg; / &bowtie;</td>
+                <td>Correlazione intrinseca o aggancio relazionale tra potenzialit&agrave;</td>
+              </tr>
+              <tr>
+                <td>+ (addizione quantitativa)</td>
+                <td>&oplus;</td>
+                <td>Integrazione relazionale: confluenza dinamica in un nuovo assetto</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Dominio supremo (&Omega;):</strong> l'<em>&Aacute;peiron</em> come insieme omeodinamico delle potenzialit&agrave; (&Omega; &not;&equiv; &empty;).</li>
+          <li><strong>Dualit&agrave; ipersimmetrica (&sect;):</strong> ogni potenzialit&agrave; <em>X</em> &isin; &Omega; ha una controparte duale sottolineata <u>X</u> &isin; &Omega;, con involutivit&agrave; (<u><u>X</u></u> &equiv; <em>X</em>) e conservazione del peso ontologico <em>W</em>.</li>
+          <li><strong>Conservazione dell'indeterminazione:</strong> nessuna correlazione ipersimmetrica pu&ograve; collassare in &delta;<sub>0</sub> o divergere.</li>
+        </ul>
+      </section>
 
-    <section id="sintesi" class="study-block">
-      <h2>5. Sintesi Top-Down ed Equazione Principe</h2>
-      <p>
-        Il percorso deduttivo <em>Top-Down</em> procede dall'&Aacute;peiron (&Omega;) &rarr; scissione (&Xi;<sub>&oplus;</sub>) &rarr; contrasto e impedenza (<em>Z</em><sub>top</sub>) &rarr; saturazione metrica (spazio, tempo, materia, &hbar;, <em>Q</em>). Il bilancio omeodinamico tra emersione e latenza si riassume nell'equazione principe oscillante attorno alla soglia minima &delta;<sub>0</sub>:
-      </p>
-      <div class="formula-box">
-        (<u>K</u> &gg; &eta;) &Theta; (K &gg; <u>&eta;</u>) &rightleftharpoons; &delta;<sub>0</sub>
-      </div>
-      <p>
-        Finch&eacute; la relazione resta in oscillazione attorno a &delta;<sub>0</sub> senza spegnersi in uno zero inerte, il sistema conserva l'indeterminazione e il divenire.
-      </p>
-    </section>
+      <section id="algebra" class="study-block">
+        <h2>2. Scissione del Plenum, Non Commutativit&agrave; e Impedenza Topologica (Z_top)</h2>
+        <p>
+          Nel Plenum ordinato &Theta;<sub><em>k</em></sub> &subset; &Omega;, il nodo di <strong>Ipertriade Neutra (ITN)</strong> bilancia le correlazioni coniugate. Quando la tensione supera la soglia critica, l'operatore di scissione <strong>&Xi;<sub>&oplus;</sub></strong> polarizza il dominio in un settore di emersione (<strong>Dominio Yang</strong> &Theta;<sub><em>k</em></sub><sup>+</sup>) e in uno coniugato di latenza (&Theta;<sub><em>k</em></sub><sup>&minus;</sup>).
+        </p>
+        <h3>Asimmetria tra Azione (K) e Latenza (&eta;)</h3>
+        <p>
+          Nel dominio Yang l'azione <em>K</em> e la reazione latente <u>&eta;</u> non commutano (<em>K</em> &gg; <u>&eta;</u> &not;&equiv; <u>&eta;</u> &ll; <em>K</em>). Il contrasto direzionale genera uno <strong>scarto ontologico</strong> il cui residuo minimo universale &egrave; l'<strong>impedenza topologica</strong> <em>Z</em><sub>top</sub>:
+        </p>
+        <div class="formula-box">
+          &Theta;(K, <u>&eta;</u>) := (K &gg; <u>&eta;</u>) &Theta; (<u>&eta;</u> &gg; K) &equiv; Z<sub>top</sub> &nbsp;&nbsp; (con Z<sub>top</sub> &not;&equiv; &delta;<sub>0</sub>)
+        </div>
+        <p>
+          Per il teorema di rappresentazione fedele &rho; su uno spazio di Hilbert &Hscr;, lo scarto relazionale si traduce in commutatore operatoriale: se <em>Z</em><sub>top</sub> siede al centro dell'algebra delle correlazioni, la sua immagine si lega al commutatore canonico quantistico.
+        </p>
+      </section>
+
+      <section id="fisica" class="study-block">
+        <h2>3. Transizione Metrica: Quanto d'Azione, Spazio, Tempo e Massa</h2>
+        <p>
+          L'impedenza topologica <em>Z</em><sub>top</sub> non pu&ograve; accumularsi all'infinito nel dominio pre-metrico. Raggiunta la soglia di saturazione, il sistema &laquo;estrude&raquo; grandezze fisiche osservabili: &egrave; la <strong>precipitazione metrica</strong>.
+        </p>
+        <ul>
+          <li><strong>Quanto d'azione (&hbar;):</strong> la saturazione di <em>Z</em><sub>top</sub> si cristallizza nella costante di Planck ridotta (&hbar;), intesa come memoria strutturale dell'asimmetria relazionale.</li>
+          <li><strong>Spazio (S):</strong> non un contenitore vuoto, ma la &laquo;distanza di sicurezza&raquo; / membrana in tensione che separa le polarit&agrave; per evitarne il collasso.</li>
+          <li><strong>Tempo (T):</strong> misura del ritardo operativo e dell'ordine sequenziale imposto dall'asimmetria dell'interazione.</li>
+          <li><strong>Massa e Materia (Infoforma I):</strong> la sintesi informazionale <em>I</em> &rightleftharpoons; (Y &gg; <u>Y</u>) nel dominio Yang, agganciata alla geometria estrusa, oppone resistenza alle variazioni: ci&ograve; che misuriamo come inerzia e massa &egrave; un nodo relazionale stabile legato al settore latente.</li>
+        </ul>
+      </section>
+
+      <section id="matematica" class="study-block">
+        <h2>4. Derivazione Quantistica e Potenziale Geometrico Q</h2>
+        <p>
+          Nella fase metrica, l'azione e la latenza si proiettano su operatori hermitiani (posizione x&#770; e impulso p&#770; = &minus;i&hbar;&nabla;), dando origine alla relazione di commutazione canonica [x&#770;, p&#770;] = i&hbar; e all'equazione di Schr&ouml;dinger dipendente dal tempo:
+        </p>
+        <div class="formula-box">
+          i&hbar; &part;&psi;/&part;t &equiv; &minus;(&hbar;&sup2; / 2<u>m</u>) &nabla;&sup2;&psi; + V(x)&psi;
+        </div>
+        <h3>Trasformazione di Madelung e Potenziale Q</h3>
+        <p>
+          Scrivendo la funzione d'onda in forma polare &psi; &equiv; R e<sup>iS/&hbar;</sup> (con densit&agrave; &rho; &equiv; R&sup2; e fase/azione S) e separando parte immaginaria e parte reale, si ottiene l'equazione di continuit&agrave; e un'equazione di Hamilton-Jacobi modificata dal <strong>potenziale quantistico</strong> <em>Q</em>:
+        </p>
+        <div class="formula-box">
+          Q &equiv; &minus;(&hbar;&sup2; / 2<u>m</u>) (&nabla;&sup2;R / R)
+        </div>
+        <p>
+          Nel quadro HYSY, <em>Q</em> esprime la pressione geometrica e topologica esercitata dal settore latente sulla metrica emersa: la geometria quantistica riflette la tensione relazionale che impedisce il collasso commutativo.
+        </p>
+      </section>
+
+      <section id="sintesi" class="study-block">
+        <h2>5. Sintesi Top-Down ed Equazione Principe</h2>
+        <p>
+          Il percorso deduttivo <em>Top-Down</em> procede dall'&Aacute;peiron (&Omega;) &rarr; scissione (&Xi;<sub>&oplus;</sub>) &rarr; contrasto e impedenza (<em>Z</em><sub>top</sub>) &rarr; saturazione metrica (spazio, tempo, materia, &hbar;, <em>Q</em>). Il bilancio omeodinamico tra emersione e latenza si riassume nell'equazione principe oscillante attorno alla soglia minima &delta;<sub>0</sub>:
+        </p>
+        <div class="formula-box">
+          (<u>K</u> &gg; &eta;) &Theta; (K &gg; <u>&eta;</u>) &rightleftharpoons; &delta;<sub>0</sub>
+        </div>
+        <p>
+          Finch&eacute; la relazione resta in oscillazione attorno a &delta;<sub>0</sub> senza spegnersi in uno zero inerte, il sistema conserva l'indeterminazione e il divenire.
+        </p>
+      </section>
+    </div>
   </main>
 
 </body>
