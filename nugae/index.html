@@ -184,7 +184,7 @@
     .note-box {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-left: 3px solid var(--bronze);
+      border-left: 4px solid var(--bronze);
       border-radius: 14px;
       padding: 22px;
       margin-bottom: 24px;
@@ -206,25 +206,44 @@
       margin-bottom: 0;
     }
 
-    /* Poesie: testo originale preservato */
-    .poems-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
+    /* Blocchi da 3 poesie con striscia bronzo sul lato sinistro */
+    .triad-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .poem-triad {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-left: 22px;
+    }
+
+    .poem-triad::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 6px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--bronze-bright) 0%, var(--bronze) 65%, rgba(200, 138, 91, 0.35) 100%);
+      box-shadow: 0 0 14px rgba(200, 138, 91, 0.25);
     }
 
     .poem-card {
       background: var(--card);
       border: 1px solid rgba(200, 138, 91, 0.2);
-      border-top: 3px solid var(--bronze);
       border-radius: 14px;
-      padding: 22px 24px;
+      padding: 20px 22px;
       transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
     .poem-card:hover {
       border-color: var(--bronze-bright);
-      transform: translateY(-2px);
+      transform: translateX(3px);
     }
 
     .poem-title {
@@ -252,6 +271,14 @@
       .nav-links {
         gap: 10px;
         font-size: 0.76rem;
+      }
+
+      .poem-triad {
+        padding-left: 16px;
+      }
+
+      .poem-triad::before {
+        width: 5px;
       }
 
       .poem-card {
@@ -334,7 +361,6 @@
 
     <section id="nota-autore" class="note-box">
       <h2>Nota dell'Autore</h2>
-      <!-- Se carichi in assets/img/in-ufficio.jpg puoi attivare: <img src="../assets/img/in-ufficio.jpg" alt="In Ufficio" style="max-width:220px;border-radius:10px;margin-bottom:12px;display:block;" /> -->
       <p>Ugo Nicola Tramutoli ha trascorso la vita a misurarsi con l'architettura logica e fisica della realtà. Ingegnere elettrotecnico e nucleare, specializzato in Teoria dei Sistemi Evolutivi, ha diviso la sua carriera tra il rigore della progettazione di impianti in ENEL, la presidenza del Comitato Elettrotecnico Italiano e, oggi, la faticosa ricerca teorica volta a costruire un ponte definitivo tra la metafisica e la fisica.</p>
       <p>Eppure, dietro l'inflessibilità delle equazioni e la ricerca sull'Indeterminato, c'è sempre l'uomo.</p>
       <p>Le poesie racchiuse in queste pagine non hanno la presunzione di scalare le vette della letteratura, ma nascono da un'urgenza molto più profonda. Sono frammenti del mio personalissimo Tao: strappi, attese, memorie, paure e slanci di tenerezza che la matematica non può contenere.</p>
@@ -342,21 +368,23 @@
       <p>Per ricordarvi che, al di là di ogni formula o teoria sull'Universo, la vera gioia della vita siete voi.</p>
     </section>
 
-    <div class="poems-grid">
+    <div class="triad-list">
 
-      <article id="cedo" class="poem-card">
-        <h2 class="poem-title">Cedo....</h2>
-        <p class="poem-meta">2 febbraio 1972</p>
-        <div class="poem-verses">Sì come il sole
+      <!-- Blocco 1 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 1">
+        <article id="cedo" class="poem-card">
+          <h2 class="poem-title">Cedo....</h2>
+          <p class="poem-meta">2 febbraio 1972</p>
+          <div class="poem-verses">Sì come il sole
 Colorando d'alba
 I suoi tramonti
 Cede alla notte...</div>
-      </article>
+        </article>
 
-      <article id="tua-voce" class="poem-card">
-        <h2 class="poem-title">La Tua voce</h2>
-        <p class="poem-meta">4 aprile 1972 (Lontano da Pilla)</p>
-        <div class="poem-verses">Nel mio cuore
+        <article id="tua-voce" class="poem-card">
+          <h2 class="poem-title">La Tua voce</h2>
+          <p class="poem-meta">4 aprile 1972 (Lontano da Pilla)</p>
+          <div class="poem-verses">Nel mio cuore
 La tua voce
 Che dice
 Che tace
@@ -366,12 +394,12 @@ Inerte di pace
 D'amore
 E' qui
 sempre</div>
-      </article>
+        </article>
 
-      <article id="cipressi" class="poem-card">
-        <h2 class="poem-title">Cipressi</h2>
-        <p class="poem-meta">Ruoti, 10 agosto 1973</p>
-        <div class="poem-verses">Non più ricordi
+        <article id="cipressi" class="poem-card">
+          <h2 class="poem-title">Cipressi</h2>
+          <p class="poem-meta">Ruoti, 10 agosto 1973</p>
+          <div class="poem-verses">Non più ricordi
 Ma abbagli di sole
 Rotti dalle foglie
 D'un castagno
@@ -379,12 +407,15 @@ Laggiù
 Dove pigri crescendo
 Celan cipressi
 Un paese di morti</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="fermateli" class="poem-card">
-        <h2 class="poem-title">Fermateli</h2>
-        <p class="poem-meta">Ruoti, 18 agosto 1973</p>
-        <div class="poem-verses">Fermate laggiù quei cavalli
+      <!-- Blocco 2 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 2">
+        <article id="fermateli" class="poem-card">
+          <h2 class="poem-title">Fermateli</h2>
+          <p class="poem-meta">Ruoti, 18 agosto 1973</p>
+          <div class="poem-verses">Fermate laggiù quei cavalli
 All'alba li ho visti
 Svelar dalla nebbia
 Veloci.
@@ -398,12 +429,12 @@ Dilegua la nebbia
 O celate speranze
 Fermati son quei neri cavalli
 Ormai è mattina !</div>
-      </article>
+        </article>
 
-      <article id="inutilita" class="poem-card">
-        <h2 class="poem-title">Inutilità</h2>
-        <p class="poem-meta">Potenza, 1973</p>
-        <div class="poem-verses">È l'acqua della terra
+        <article id="inutilita" class="poem-card">
+          <h2 class="poem-title">Inutilità</h2>
+          <p class="poem-meta">Potenza, 1973</p>
+          <div class="poem-verses">È l'acqua della terra
 Che corrode inerte roccia
 È il vento di sabbia
 Che sconvolge futili distese
@@ -414,12 +445,12 @@ Che regge dolorosa il rantolo
 È il mio cuore di gomitolo
 Che si scioglie esile filo
 E tutti inutilmente</div>
-      </article>
+        </article>
 
-      <article id="ascolto" class="poem-card">
-        <h2 class="poem-title">Ascolto</h2>
-        <p class="poem-meta">1973</p>
-        <div class="poem-verses">Svegliarsi d'un tratto nel sole
+        <article id="ascolto" class="poem-card">
+          <h2 class="poem-title">Ascolto</h2>
+          <p class="poem-meta">1973</p>
+          <div class="poem-verses">Svegliarsi d'un tratto nel sole
 Al calar della notte
 Nella quiete del tempo
 L'angoscia che passa.
@@ -434,23 +465,26 @@ Gridan tramonti all'alba?
 Ascolto sperando!
 Guardo
 ed ascolto soltanto.</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="scario-1973" class="poem-card">
-        <h2 class="poem-title">Sul fiume Scario</h2>
-        <p class="poem-meta">20 dicembre 1973</p>
-        <div class="poem-verses">Ristagna un bagliore.
+      <!-- Blocco 3 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 3">
+        <article id="scario-1973" class="poem-card">
+          <h2 class="poem-title">Sul fiume Scario</h2>
+          <p class="poem-meta">20 dicembre 1973</p>
+          <div class="poem-verses">Ristagna un bagliore.
 E tu riderai
 Delle rose
 Dai rosai del tramonto
 Per te colte
 Fra i rossi dell'acqua.</div>
-      </article>
+        </article>
 
-      <article id="autunno-74" class="poem-card">
-        <h2 class="poem-title">Autunno 74</h2>
-        <p class="poem-meta">Ottobre '74</p>
-        <div class="poem-verses">Sotto un cielo di nubi
+        <article id="autunno-74" class="poem-card">
+          <h2 class="poem-title">Autunno 74</h2>
+          <p class="poem-meta">Ottobre '74</p>
+          <div class="poem-verses">Sotto un cielo di nubi
 Crepuscola
 Ingiallendo l'autunno
 Tra opposti consuma
@@ -458,12 +492,12 @@ Il silenzio
 Che viene scrosciando
 Più forte di sera
 La pioggia</div>
-      </article>
+        </article>
 
-      <article id="deserto" class="poem-card">
-        <h2 class="poem-title">Deserto</h2>
-        <p class="poem-meta">Oasi di vetro, 21 febbraio 1975, ore 24.00</p>
-        <div class="poem-verses">Fa un fiore
+        <article id="deserto" class="poem-card">
+          <h2 class="poem-title">Deserto</h2>
+          <p class="poem-meta">Oasi di vetro, 21 febbraio 1975, ore 24.00</p>
+          <div class="poem-verses">Fa un fiore
 Il deserto
 L'oasi
 Della solitudine
@@ -471,22 +505,25 @@ Dune di parole
 A sciami
 S'infrangono
 E' solo un fiore</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="cenere" class="poem-card">
-        <h2 class="poem-title">Cenere</h2>
-        <p class="poem-meta">30 dicembre 1975</p>
-        <div class="poem-verses">Presente
+      <!-- Blocco 4 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 4">
+        <article id="cenere" class="poem-card">
+          <h2 class="poem-title">Cenere</h2>
+          <p class="poem-meta">30 dicembre 1975</p>
+          <div class="poem-verses">Presente
 Sempre
 L'arrendevolezza
 Al passato
 Ad ogni mio ritorno.</div>
-      </article>
+        </article>
 
-      <article id="paese-1980" class="poem-card">
-        <h2 class="poem-title">Al mio paese di tanto in tanto</h2>
-        <p class="poem-meta">Agosto 1980</p>
-        <div class="poem-verses">Per la vecchia statale che nella gola sprofonda
+        <article id="paese-1980" class="poem-card">
+          <h2 class="poem-title">Al mio paese di tanto in tanto</h2>
+          <p class="poem-meta">Agosto 1980</p>
+          <div class="poem-verses">Per la vecchia statale che nella gola sprofonda
 La lingua d'asfalto si perde nel verde
 Paracarri neri e bianchi denti tra l'erbe
 Un tunnel di querce lungo la sponda
@@ -503,12 +540,12 @@ Nel giorno che avrai nel cuore un tormento
 Ritorna qui! Ricordi? Qui vicino
 Dopo il ponte la sorgente
 Acqua fresca e un panino.</div>
-      </article>
+        </article>
 
-      <article id="a-me" class="poem-card">
-        <h2 class="poem-title">A me</h2>
-        <p class="poem-meta">Roma, 1 maggio 2005</p>
-        <div class="poem-verses">Per morire andrò molto lontano
+        <article id="a-me" class="poem-card">
+          <h2 class="poem-title">A me</h2>
+          <p class="poem-meta">Roma, 1 maggio 2005</p>
+          <div class="poem-verses">Per morire andrò molto lontano
 Per non dare fastidio a nessuno
 Nel soffrir cerco sempre qualcuno
 A cui stringere forte la mano
@@ -518,12 +555,15 @@ Dell'anima che spegnersi vuole
 Nel buio. Un verso mi assale
 .." gli occhi morendo van cercando il sole."
 (verso di Ungaretti o Foscolo?)</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="a-pilla" class="poem-card">
-        <h2 class="poem-title">A Pilla</h2>
-        <p class="poem-meta">Roma, 1 maggio 2005</p>
-        <div class="poem-verses">E' l'alba. Dorme Pilla dorme tranquilla
+      <!-- Blocco 5 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 5">
+        <article id="a-pilla" class="poem-card">
+          <h2 class="poem-title">A Pilla</h2>
+          <p class="poem-meta">Roma, 1 maggio 2005</p>
+          <div class="poem-verses">E' l'alba. Dorme Pilla dorme tranquilla
 Al raggio del sole riga in volto una stilla
 Primavere passate son quasi quaranta
 Felicità forse poca, ma fatica tanta
@@ -553,12 +593,12 @@ Ricorda anche tu!
 quel che dico ogni tanto
 La gioia della vita sei tu!
 Tu soltanto!</div>
-      </article>
+        </article>
 
-      <article id="tempesta" class="poem-card">
-        <h2 class="poem-title">Tempesta di notte</h2>
-        <p class="poem-meta">Scario, 29 luglio 2006</p>
-        <div class="poem-verses">Rompe il sonno un rombo la notte
+        <article id="tempesta" class="poem-card">
+          <h2 class="poem-title">Tempesta di notte</h2>
+          <p class="poem-meta">Scario, 29 luglio 2006</p>
+          <div class="poem-verses">Rompe il sonno un rombo la notte
 Il cane tremante s'accosta al mio letto
 Lei dorme serena non ansima il petto
 Balugina un cielo d'albe interrotte
@@ -572,12 +612,12 @@ Negli occhi bagliori di luce diluvia
 L'acre odor della terra ora m'inebria
 Tendo le mani, sento tutto me stesso
 O Madre tutt'uno con Te son adesso</div>
-      </article>
+        </article>
 
-      <article id="scario-2009" class="poem-card">
-        <h2 class="poem-title">Scario 30-08-2009</h2>
-        <p class="poem-meta">Scario, 30-08-2009</p>
-        <div class="poem-verses">Fermo è il tempo
+        <article id="scario-2009" class="poem-card">
+          <h2 class="poem-title">Scario 30-08-2009</h2>
+          <p class="poem-meta">Scario, 30-08-2009</p>
+          <div class="poem-verses">Fermo è il tempo
 Vola un gabbiano
 Ferme con ali
 Va controvento
@@ -601,12 +641,15 @@ Per Lei ch'è un incanto
 Una nuova vita
 Felice futuro soltanto
 Stretto fra fragili dita</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="soffio" class="poem-card">
-        <h2 class="poem-title">Soffio</h2>
-        <p class="poem-meta">Dicembre 2011</p>
-        <div class="poem-verses">Come
+      <!-- Blocco 6 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 6">
+        <article id="soffio" class="poem-card">
+          <h2 class="poem-title">Soffio</h2>
+          <p class="poem-meta">Dicembre 2011</p>
+          <div class="poem-verses">Come
 Disperatamente
 D'acqua un sorso
 Cercando
@@ -620,12 +663,12 @@ Così
 Scorre e si perde
 L'unica carezza
 Della vita</div>
-      </article>
+        </article>
 
-      <article id="milano-2012" class="poem-card">
-        <h2 class="poem-title">Milano marzo 2012</h2>
-        <p class="poem-meta">Milano, marzo 2012</p>
-        <div class="poem-verses">E' quasi primavera
+        <article id="milano-2012" class="poem-card">
+          <h2 class="poem-title">Milano marzo 2012</h2>
+          <p class="poem-meta">Milano, marzo 2012</p>
+          <div class="poem-verses">E' quasi primavera
 Milano scorre intorno
 Passi lenti nella sera
 Attendo il tuo ritorno
@@ -633,22 +676,25 @@ Nella mente il tuo viso
 Ti aspetto senza rancore
 Sento già il tuo sorriso
 Ma lente corrono l'ore</div>
-      </article>
+        </article>
 
-      <article id="dolomiti" class="poem-card">
-        <h2 class="poem-title">Dolomiti</h2>
-        <p class="poem-meta">Milano, marzo 2012</p>
-        <div class="poem-verses">Svettano le dolomiti nel cielo
+        <article id="dolomiti" class="poem-card">
+          <h2 class="poem-title">Dolomiti</h2>
+          <p class="poem-meta">Milano, marzo 2012</p>
+          <div class="poem-verses">Svettano le dolomiti nel cielo
 Come il desiderio che ho di te
 L'inverno l'ha coperte di gelo
 Che sol può scioglier
 L'amor tuo per me</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="mia-notte" class="poem-card">
-        <h2 class="poem-title">La mia notte</h2>
-        <p class="poem-meta">18 agosto 2012</p>
-        <div class="poem-verses">Sei come questa notte oscura e serena
+      <!-- Blocco 7 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 7">
+        <article id="mia-notte" class="poem-card">
+          <h2 class="poem-title">La mia notte</h2>
+          <p class="poem-meta">18 agosto 2012</p>
+          <div class="poem-verses">Sei come questa notte oscura e serena
 Nera vita mia ma tempestata di stelle.
 Rade, men fitte.... più fitte, lontane
 Come attimi di felicità passati
@@ -675,12 +721,12 @@ finché sarà offuscata la stessa luce del
 giorno
 e la mia notte risplenderà
 più luminosa della luce vitale del sole.</div>
-      </article>
+        </article>
 
-      <article id="raffreddore" class="poem-card">
-        <h2 class="poem-title">Ho il raffreddore</h2>
-        <p class="poem-meta">Roma, 4 gennaio 2014</p>
-        <div class="poem-verses">non sento odore
+        <article id="raffreddore" class="poem-card">
+          <h2 class="poem-title">Ho il raffreddore</h2>
+          <p class="poem-meta">Roma, 4 gennaio 2014</p>
+          <div class="poem-verses">non sento odore
 neanche il sapore
 si attenua il rumore
 si vela la vista intorno
@@ -698,12 +744,12 @@ carezze come lacci
 legati con tenerezza
 sulla pelle dalle tue mani
 tutta la notte fino a domani.</div>
-      </article>
+        </article>
 
-      <article id="trota" class="poem-card">
-        <h2 class="poem-title">La trota d'Aosta</h2>
-        <p class="poem-meta">Torre Oliva, Scario, 9 agosto 2019</p>
-        <div class="poem-verses">In valle d'Aosta seduto in panchina
+        <article id="trota" class="poem-card">
+          <h2 class="poem-title">La trota d'Aosta</h2>
+          <p class="poem-meta">Torre Oliva, Scario, 9 agosto 2019</p>
+          <div class="poem-verses">In valle d'Aosta seduto in panchina
 Nel lago volteggia una trota alpina
 Senza sosta e con un fare ingordo
 Mentre io sonnecchio un po' sul bordo
@@ -715,12 +761,15 @@ Fare l'amore un accoppiamento
 Un guizzo nell'acqua ed in momento
 Ingoiata vien nella bocca del pesce
 Con la sua vita il sogno svanisce</div>
-      </article>
+        </article>
+      </section>
 
-      <article id="sera-scario" class="poem-card">
-        <h2 class="poem-title">Sera a Scario</h2>
-        <p class="poem-meta">Ottobre 2021, ore 19</p>
-        <div class="poem-verses">Questa sera non la sento mia
+      <!-- Blocco 8 -->
+      <section class="poem-triad" aria-label="Blocco di poesie 8">
+        <article id="sera-scario" class="poem-card">
+          <h2 class="poem-title">Sera a Scario</h2>
+          <p class="poem-meta">Ottobre 2021, ore 19</p>
+          <div class="poem-verses">Questa sera non la sento mia
 Neanche una bava di poesia
 Mi assale solo la malinconia
 Che si accompagna alla nostalgia
@@ -729,12 +778,12 @@ E di quella inconsapevole allegria
 Che allor mi avvolse come una malia
 Sol la vecchiezza la sento mia
 Ma ormai è notte.. e così sia</div>
-      </article>
+        </article>
 
-      <article id="sole-scario" class="poem-card">
-        <h2 class="poem-title">Al sole di Scario</h2>
-        <p class="poem-meta">Pasqua 2022</p>
-        <div class="poem-verses">Disteso al sol su una sdraio
+        <article id="sole-scario" class="poem-card">
+          <h2 class="poem-title">Al sole di Scario</h2>
+          <p class="poem-meta">Pasqua 2022</p>
+          <div class="poem-verses">Disteso al sol su una sdraio
 Nel silenzio scorre un ruscello
 Il canto d'un piccol uccello
 Tra i fiori d'un'ape il ronzio
@@ -748,19 +797,20 @@ L'incanto creato dal paesaggio
 Svanì..
 Così mi vien meno pian piano
 La fiducia nel genere umano</div>
-      </article>
+        </article>
 
-      <article id="neandertal" class="poem-card">
-        <h2 class="poem-title">Neandertal</h2>
-        <p class="poem-meta">Scario, 13 agosto 2023</p>
-        <div class="poem-verses">Panem et circenses or con gusto
+        <article id="neandertal" class="poem-card">
+          <h2 class="poem-title">Neandertal</h2>
+          <p class="poem-meta">Scario, 13 agosto 2023</p>
+          <div class="poem-verses">Panem et circenses or con gusto
 Sollazza l'uomo ferie di Augusto!
 Un tempo solo pane, divertimenti
 di fanciulli che con pietra dura
 Macellavan per metter sotto i denti
 Per sopravviver con la carne cruda
 Per questa umanità effimera e nuda</div>
-      </article>
+        </article>
+      </section>
 
     </div>
   </main>
