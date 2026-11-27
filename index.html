@@ -232,7 +232,7 @@
   </header>
 
   <main id="top" class="stage">
-    <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay muted playsinline loop preload="auto"></video>
+    <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay playsinline preload="auto"></video>
     <div class="stage-overlay"></div>
 
     <div class="pillars-row">
@@ -253,7 +253,7 @@
     </div>
 
     <div class="audio-row">
-      <button type="button" class="btn-audio" id="btnAudio">Attiva Audio</button>
+      <button type="button" class="btn-audio" id="btnAudio">Muta Audio</button>
       <span class="audio-msg" id="audioMsg"></span>
     </div>
   </main>
@@ -263,21 +263,57 @@
     const audioBtn = document.getElementById("btnAudio");
     const audioMsg = document.getElementById("audioMsg");
 
-    audioBtn.addEventListener("click", async () => {
+    function updateUiState() {
+      audioBtn.textContent = videoEl.muted ? "Attiva Audio" : "Muta Audio";
+    }
+
+    async function startOnce() {
+      videoEl.loop = false;
+      videoEl.volume = 1.0;
       try {
-        videoEl.muted = !videoEl.muted;
-        videoEl.volume = 1.0;
+        videoEl.muted = false;
         await videoEl.play();
-        if (videoEl.muted) {
-          audioBtn.textContent = "Attiva Audio";
-          audioMsg.textContent = "";
-        } else {
-          audioBtn.textContent = "Muta Audio";
-          audioMsg.textContent = "";
-        }
+        audioMsg.textContent = "";
       } catch (e) {
-        audioMsg.textContent = "Riproduzione audio bloccata dal browser";
+        videoEl.muted = true;
+        try {
+          await videoEl.play();
+          audioMsg.textContent = "Tocca o clicca per attivare la musica";
+        } catch (_) {}
       }
+      updateUiState();
+    }
+
+    startOnce();
+
+    document.addEventListener("pointerdown", async () => {
+      if (videoEl.muted) {
+        videoEl.muted = false;
+        videoEl.volume = 1.0;
+        try {
+          await videoEl.play();
+          audioMsg.textContent = "";
+        } catch (_) {}
+        updateUiState();
+      }
+    }, { once: true });
+
+    audioBtn.addEventListener("click", async (ev) => {
+      ev.stopPropagation();
+      videoEl.muted = !videoEl.muted;
+      videoEl.volume = 1.0;
+      if (videoEl.ended) {
+        videoEl.currentTime = 0;
+      }
+      try {
+        await videoEl.play();
+      } catch (_) {}
+      audioMsg.textContent = "";
+      updateUiState();
+    });
+
+    videoEl.addEventListener("ended", () => {
+      audioMsg.textContent = "Riproduzione completata";
     });
   </script>
 </body>
