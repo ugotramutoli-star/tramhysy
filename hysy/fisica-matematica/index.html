@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAM HYSY — Fisica &amp; Matematica (Pilastro B)</title>
+  <title>TRAM HYSY — Fisica &amp; Matematica</title>
   <style>
     :root {
-      --bg: #050505;
+      --bg: #050507;
       --panel: #0e0e12;
       --text: #f3f4f6;
       --muted: #b4b8c2;
+      --gold: #d4af37;
       --silver: #cbd5e1;
+      --bronze: #c88a5b;
       --accent: #e2e8f0;
       --border: rgba(203, 213, 225, 0.16);
     }
@@ -36,20 +38,46 @@
       color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.06em;
     }
     .brand img { width: 34px; height: 34px; border-radius: 6px; object-fit: cover; }
-    .subnav {
-      display: flex; flex-wrap: wrap; gap: 12px; list-style: none; font-size: 0.85rem;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      font-size: 0.85rem;
     }
-    .subnav a { color: var(--muted); text-decoration: none; }
-    .subnav a:hover, .subnav a.active { color: var(--silver); }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .c-home { color: var(--text); opacity: 0.85; }
+    .c-home:hover { opacity: 1; }
+    .c-gold { color: var(--gold); }
+    .c-silver { color: var(--silver); }
+    .c-bronze { color: var(--bronze); }
     .container { max-width: 920px; margin: 0 auto; padding: 36px 20px 84px; }
     .kicker { color: var(--silver); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
     h1 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); margin-bottom: 12px; }
-    .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 28px; }
+    .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 24px; }
+    .summary-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 30px;
+    }
+    .summary-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
     .toc {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px;
+      display: flex; flex-wrap: wrap; gap: 8px;
     }
     .toc a {
-      background: var(--panel); border: 1px solid var(--border); color: var(--silver);
+      background: #09090c; border: 1px solid var(--border); color: var(--silver);
       text-decoration: none; padding: 6px 12px; border-radius: 999px; font-size: 0.82rem;
     }
     section.study-block {
@@ -59,6 +87,7 @@
       border-radius: 14px;
       padding: 24px;
       margin-bottom: 22px;
+      scroll-margin-top: 80px;
     }
     section.study-block h2 { font-size: 1.3rem; color: var(--accent); margin-bottom: 10px; }
     section.study-block h3 { font-size: 1.02rem; color: var(--silver); margin: 16px 0 6px; }
@@ -81,7 +110,7 @@
     th, td { border: 1px solid rgba(255,255,255,0.12); padding: 9px 11px; text-align: left; }
     th { background: rgba(255,255,255,0.04); color: var(--silver); }
     @media (max-width: 720px) {
-      .subnav { display: none; }
+      .nav-links { gap: 10px; font-size: 0.76rem; }
       section.study-block { padding: 18px; }
     }
   </style>
@@ -93,32 +122,33 @@
       <img src="../../assets/img/respiro.jpg" alt="Logo TRAM HYSY" />
       <span>TRAM HYSY</span>
     </a>
-    <nav aria-label="Sezioni Pilastro B">
-      <ul class="subnav">
-        <li><a href="../../index.html">Torna a Home</a></li>
-        <li><a href="../divulgativo/">Divulgativo</a></li>
-        <li><a href="../filosofia/">Filosofia</a></li>
-        <li><a href="./" class="active">Fisica &amp; Matematica</a></li>
-        <li><a href="../ontologia-informatica/">Ontologia Informatica</a></li>
-        <li><a href="../conclusioni/">Conclusioni</a></li>
+    <nav aria-label="Navigazione sezioni">
+      <ul class="nav-links">
+        <li><a href="../../index.html" class="c-home">Home</a></li>
+        <li><a href="../../deng/" class="c-gold">Politica</a></li>
+        <li><a href="./" class="c-silver">Scienza</a></li>
+        <li><a href="../../nugae/" class="c-bronze">Poesia</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="container">
-    <p class="kicker">Pilastro B · Scienza · Sottocartella Fisica &amp; Matematica</p>
+    <p class="kicker">Scienza · Fisica &amp; Matematica</p>
     <h1>Fisica e Matematica del Framework HYSY</h1>
     <p class="lead">
-      Sintesi di studio unificata (Documenti I–V): come l'architettura relazionale pre-metrica passa dall'<em>&Aacute;peiron</em> (&Omega;) e dall'algebra ipersimmetrica alla genesi dello spazio-tempo, del quanto d'azione, della materia e delle equazioni quantistiche.
+      Sintesi riepilogativa unica: come l'architettura relazionale pre-metrica passa dall'<em>&Aacute;peiron</em> (&Omega;) e dall'algebra ipersimmetrica alla genesi dello spazio-tempo, del quanto d'azione, della materia e delle equazioni quantistiche.
     </p>
 
-    <div class="toc">
-      <a href="#stele">1. Stele di Rosetta &amp; Primitivi</a>
-      <a href="#algebra">2. Scissione, Algebra &amp; Z_top</a>
-      <a href="#fisica">3. Saturazione, Spazio-Tempo &amp; Massa</a>
-      <a href="#matematica">4. Derivazione Quantistica &amp; Q</a>
-      <a href="#sintesi">5. Equazione Principe &amp; Chiusura</a>
-    </div>
+    <nav class="summary-box" aria-label="Indice riepilogativo">
+      <p class="summary-title">Indice riepilogativo della pagina</p>
+      <div class="toc">
+        <a href="#stele">1. Stele di Rosetta &amp; Primitivi</a>
+        <a href="#algebra">2. Scissione, Algebra &amp; Z_top</a>
+        <a href="#fisica">3. Saturazione, Spazio-Tempo &amp; Massa</a>
+        <a href="#matematica">4. Derivazione Quantistica &amp; Q</a>
+        <a href="#sintesi">5. Equazione Principe &amp; Chiusura</a>
+      </div>
+    </nav>
 
     <section id="stele" class="study-block">
       <h2>1. Rifiuto degli Assoluti Statici e Stele di Rosetta</h2>
