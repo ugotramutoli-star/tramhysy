@@ -3,289 +3,497 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAM HYSY — Ipersimmetria Ω</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>TRAM HYSY — Nugae · Il Mio Tao</title>
+  <link rel="stylesheet" href="../css/style.css" />
   <style>
-    .home-stage {
-      position: relative;
-      width: 100%;
-      min-height: calc(100vh - var(--nav-h));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      background: #000;
-      overflow: hidden;
-    }
-
-    video.vortex-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.12);
-      z-index: 1;
-    }
-
-    .stage-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.72) 100%);
-    }
-
-    .pillars-row {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      max-width: 720px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: auto;
-    }
-
-    .pillar-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      background: rgba(10, 12, 18, 0.78);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 14px;
-      padding: 14px 10px 12px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .pillar-box:hover {
-      transform: translateY(-3px);
-    }
-
-    .box-gold {
-      border-top: 3px solid var(--gold);
-    }
-
-    .box-silver {
-      border-top: 3px solid var(--silver);
-    }
-
-    .box-bronze {
-      border-top: 3px solid var(--bronze);
-    }
-
-    .pillar-box img {
-      width: 104px !important;
-      height: 104px !important;
-      max-width: 104px !important;
-      max-height: 104px !important;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .pillar-name {
-      font-size: 0.98rem;
-      font-weight: 700;
-    }
-
-    .box-gold .pillar-name {
-      color: var(--gold);
-    }
-
-    .box-silver .pillar-name {
-      color: var(--silver);
-    }
-
-    .box-bronze .pillar-name {
-      color: var(--bronze);
-    }
-
-    .audio-row {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+    .note-box, .poem-card, .poem-title { scroll-margin-top: 120px; }
+    .poem-title { padding-top: 6px; }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <a href="#top" class="brand">
-      <img src="assets/img/respiro.jpg" alt="Logo Respiro" />
+  <header class="topbar topbar-sub">
+    <a href="../index.html" class="brand">
+      <img src="../assets/img/respiro.jpg" alt="Logo Respiro — TRAM HYSY" />
       <span class="brand-label">TRAM HYSY</span>
     </a>
-    <nav class="center-nav" aria-label="Sezioni principali">
+    <nav aria-label="Navigazione sezioni">
       <ul class="nav-links">
-        <li><a href="deng/" class="c-gold">Politica</a></li>
-        <li><a href="hysy/" class="c-silver">Scienza</a></li>
-        <li><a href="nugae/" class="c-bronze">Poesia</a></li>
-        <li><a href="#autore" id="navAuthorLink" class="c-author">Autore</a></li>
+        <li><a href="../index.html" class="c-home">Home</a></li>
+        <li><a href="../deng/" class="c-gold">Politica</a></li>
+        <li><a href="../hysy/" class="c-silver">Scienza</a></li>
+        <li><a href="./" class="c-bronze">Poesia</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="home-stage">
-      <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay playsinline preload="auto"></video>
-      <div class="stage-overlay"></div>
-
-      <div class="pillars-row">
-        <a href="deng/" class="pillar-box box-gold">
-          <img src="assets/img/deng.jpg" alt="Politica" />
-          <span class="pillar-name">politica</span>
-        </a>
-
-        <a href="hysy/" class="pillar-box box-silver">
-          <img src="assets/img/hysy.jpg" alt="Scienza" />
-          <span class="pillar-name">scienza</span>
-        </a>
-
-        <a href="nugae/" class="pillar-box box-bronze">
-          <img src="assets/img/nugae.jpg" alt="Poesia" />
-          <span class="pillar-name">poesia</span>
-        </a>
+  <section class="hero-nugae">
+    <div class="hero-inner">
+      <div class="coin-badge">
+        <img src="../assets/img/nugae.jpg" alt="Moneta Nugae — Il Mio Tao" />
       </div>
+      <p class="kicker">Poesia · Nugae</p>
+      <h1>IL MIO TAO — A me!</h1>
+      <p class="subtitle">U. TRAM. · dei desideri (Liricazze ad mentula canis)</p>
+      <p class="epigraph">
+        &ldquo;&epsilon;&pi;&alpha;&mu;&epsilon;&rho;&omicron;&iota;&middot; &tau;&iacute; &delta;&eacute; &tau;&iota;&sigmaf;; &tau;&iacute; &delta;&rsquo; &omicron;&upsilon;&rsquo; &tau;&iota;&sigmaf;; &sigma;&kappa;&iota;&alpha;&rsquo;&sigmaf; &oacute;&nu;&alpha;&rho; &alpha;&nu;&theta;&rho;&omega;&pi;&omicron;&sigmaf;&rdquo; (Pitiche, VIII, IV, 95-96)
+      </p>
+    </div>
+  </section>
 
-      <div class="audio-row">
-        <button type="button" class="btn-audio" id="btnAudio">Muta Audio</button>
-        <span class="audio-msg" id="audioMsg"></span>
-      </div>
+  <main class="container">
+    <nav class="quick-index" aria-label="Indice delle poesie">
+      <a href="#premessa">Premessa</a>
+      <a href="#nota-autore">Nota dell'Autore</a>
+      <a href="#cedo">Cedo....</a>
+      <a href="#tua-voce">La Tua voce</a>
+      <a href="#cipressi">Cipressi</a>
+      <a href="#fermateli">Fermateli</a>
+      <a href="#inutilita">Inutilit&agrave;</a>
+      <a href="#ascolto">Ascolto</a>
+      <a href="#scario-1973">Sul fiume Scario</a>
+      <a href="#autunno-74">Autunno 74</a>
+      <a href="#deserto">Deserto</a>
+      <a href="#cenere">Cenere</a>
+      <a href="#paese-1980">Al mio paese di tanto in tanto</a>
+      <a href="#a-me">A me</a>
+      <a href="#a-pilla">A Pilla</a>
+      <a href="#tempesta">Tempesta di notte</a>
+      <a href="#scario-2009">Scario 30-08-2009</a>
+      <a href="#soffio">Soffio</a>
+      <a href="#milano-2012">Milano marzo 2012</a>
+      <a href="#dolomiti">Dolomiti</a>
+      <a href="#mia-notte">La mia notte</a>
+      <a href="#raffreddore">Ho il raffreddore</a>
+      <a href="#trota">La trota d'Aosta</a>
+      <a href="#sera-scario">Sera a Scario</a>
+      <a href="#sole-scario">Al sole di Scario</a>
+      <a href="#neandertal">Neandertal</a>
+    </nav>
+
+    <section id="premessa" class="note-box">
+      <h2>IL MIO TAO: Premessa</h2>
+      <p>La parola poetica racchiusa in queste pagine non è un contenitore passivo, ma un campo di forze in costante attrito. Leggere Il mio Tao significa entrare in uno spazio in cui l'esistenza non viene misurata con i rassicuranti orologi della logica, ma viene registrata attraverso strappi, tensioni opposte e collassi relazionali. È la dinamica del Wuji e del Taiji applicata al perimetro di una vita umana: un fluire continuo che rifiuta le illusioni e disinnesca ogni autocompiacimento.</p>
+      <p>In questo vuoto, la percezione stessa del tempo subisce continue aberrazioni. La logica rigorosa si scontra con l'attrito dei passi lenti nella sera, dove le ore dell'attesa corrono esasperatamente lente. La memoria non funge da consolazione, ma opera come una spietata forza di gravità a cui l'individuo si arrende ad ogni ritorno, un ciclo ineluttabile che cristallizza l'istante in cenere. L'angoscia diviene una dinamica inarrestabile, simile a neri cavalli che svelano dalla nebbia la loro corsa verso lo schianto frontale con il mattino.</p>
+      <p>Questo è un Tao privo di dogmi. Una registrazione cruda dell'esistere, dove la parola trattiene la vita un istante prima che il tempo azzeri il sistema.</p>
     </section>
 
-    <section id="autore" class="author-section" aria-label="Profilo dell'Autore">
-      <article id="authorCard" class="author-card">
-        <div class="author-photo-wrap">
-          <img id="authorPhoto" src="assets/img/autore.jpg" alt="Ugo Nicola Tramutoli" />
-        </div>
-        <div>
-          <p class="author-kicker">Autore · Filosofia, Scienza &amp; Poesia</p>
-          <h2 class="author-name">Ugo Nicola Tramutoli</h2>
-          <p class="author-role">Già Presidente Generale del CEI · Ingegnere · Ricercatore &amp; Poeta</p>
-          <div class="author-bio">
-            <p>
-              Dopo una lunga carriera nell'ingegneria e in ENEL — tra progettazione impiantistica e reti di distribuzione — ha guidato dal 2007 al 2013 il Comitato Elettrotecnico Italiano (CEI) come Presidente Generale, maturando un'esperienza solida nella teoria dei sistemi e nella normazione tecnica.
-            </p>
-            <p>
-              Nella sua tesi filosofico-scientifica del framework HYSY (<em>HyperSymmetric Quantum Theory</em>), rifiuta gli assoluti statici (zero inerte, identità rigida, vuoto assoluto) a favore di un'ontologia relazionale pre-metrica in divenire: il contrasto asimmetrico genera un'impedenza topologica (<em>Z</em><sub>top</sub>) la cui saturazione fa emergere metrica, spazio-tempo, materia e struttura quantistica.
-            </p>
-            <p>
-              Nelle poesie de <em>Il mio Tao</em> e <em>Nugae</em>, la stessa tensione tra ordine e divenire si fa voce vissuta: memorie dei luoghi, affetti, silenzi, passaggi del tempo e slanci interiori che restano irriducibili a qualsiasi schema formale.
-            </p>
-          </div>
-        </div>
-      </article>
+    <section id="nota-autore" class="note-box">
+      <h2>Nota dell'Autore</h2>
+      <p>Ugo Nicola Tramutoli ha trascorso la vita a misurarsi con l'architettura logica e fisica della realtà. Ingegnere elettrotecnico e nucleare, specializzato in Teoria dei Sistemi Evolutivi, ha diviso la sua carriera tra il rigore della progettazione di impianti in ENEL, la presidenza del Comitato Elettrotecnico Italiano e, oggi, la faticosa ricerca teorica volta a costruire un ponte definitivo tra la metafisica e la fisica.</p>
+      <p>Eppure, dietro l'inflessibilità delle equazioni e la ricerca sull'Indeterminato, c'è sempre l'uomo.</p>
+      <p>Le poesie racchiuse in queste pagine non hanno la presunzione di scalare le vette della letteratura, ma nascono da un'urgenza molto più profonda. Sono frammenti del mio personalissimo Tao: strappi, attese, memorie, paure e slanci di tenerezza che la matematica non può contenere.</p>
+      <p>Ho voluto stamparle per lasciare una traccia del mio animo, nuda e sincera, alle persone che danno senso al mio tempo. Questo piccolo libro è per mia moglie Pilla, compagna di una vita intera, per i miei figli, per Chiara, per i miei parenti e per gli amici più cari. È un dono per voi. Spero che, sfogliando queste pagine nel tempo, possiate ritrovare il mio respiro, il mio sorriso e l'infinito affetto che mi lega a ciascuno di voi.</p>
+      <p>Per ricordarvi che, al di là di ogni formula o teoria sull'Universo, la vera gioia della vita siete voi.</p>
     </section>
-  </main>
 
-  <script>
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
-    if (window.location.hash === "#autore") {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
-    }
-    window.addEventListener("load", () => {
-      if (!window.location.hash) {
-        window.scrollTo(0, 0);
-      }
-    });
+    <div class="triad-list">
 
-    const videoEl = document.getElementById("vortexVideo");
-    const audioBtn = document.getElementById("btnAudio");
-    const audioMsg = document.getElementById("audioMsg");
-    const navAuthorLink = document.getElementById("navAuthorLink");
-    const authorCard = document.getElementById("authorCard");
-    const authorPhoto = document.getElementById("authorPhoto");
+      <section class="poem-triad" aria-label="Blocco di poesie 1">
+        <article id="cedo" class="poem-card">
+          <h2 class="poem-title">Cedo....</h2>
+          <p class="poem-meta">2 febbraio 1972</p>
+          <div class="poem-verses">Sì come il sole
+Colorando d'alba
+I suoi tramonti
+Cede alla notte...</div>
+        </article>
 
-    const photoCandidates = [
-      "assets/img/autore.jpg",
-      "assets/img/FOTO%20UGO.JPG",
-      "assets/img/autore.JPG",
-      "assets/img/FOTO UGO.JPG"
-    ];
-    let photoIdx = 0;
+        <article id="tua-voce" class="poem-card">
+          <h2 class="poem-title">La Tua voce</h2>
+          <p class="poem-meta">4 aprile 1972 (Lontano da Pilla)</p>
+          <div class="poem-verses">Nel mio cuore
+La tua voce
+Che dice
+Che tace
+Che grida
+In un mare
+Inerte di pace
+D'amore
+E' qui
+sempre</div>
+        </article>
 
-    if (authorPhoto) {
-      authorPhoto.addEventListener("error", () => {
-        photoIdx += 1;
-        if (photoIdx < photoCandidates.length) {
-          authorPhoto.src = photoCandidates[photoIdx];
-        } else {
-          authorCard.classList.add("no-photo");
-        }
-      });
-    }
+        <article id="cipressi" class="poem-card">
+          <h2 class="poem-title">Cipressi</h2>
+          <p class="poem-meta">Ruoti, 10 agosto 1973</p>
+          <div class="poem-verses">Non più ricordi
+Ma abbagli di sole
+Rotti dalle foglie
+D'un castagno
+Laggiù
+Dove pigri crescendo
+Celan cipressi
+Un paese di morti</div>
+        </article>
+      </section>
 
-    function updateUiState() {
-      audioBtn.textContent = videoEl.muted ? "Attiva Audio" : "Muta Audio";
-    }
+      <section class="poem-triad" aria-label="Blocco di poesie 2">
+        <article id="fermateli" class="poem-card">
+          <h2 class="poem-title">Fermateli</h2>
+          <p class="poem-meta">Ruoti, 18 agosto 1973</p>
+          <div class="poem-verses">Fermate laggiù quei cavalli
+All'alba li ho visti
+Svelar dalla nebbia
+Veloci.
+Fermate laggiù
+Son neri l'ho visti
+Correr più forte
+L'ho sentiti
+Più forte nitrire
+Son qui
+Dilegua la nebbia
+O celate speranze
+Fermati son quei neri cavalli
+Ormai è mattina !</div>
+        </article>
 
-    async function startOnce() {
-      videoEl.loop = false;
-      videoEl.volume = 1.0;
-      try {
-        videoEl.muted = false;
-        await videoEl.play();
-        audioMsg.textContent = "";
-      } catch (e) {
-        videoEl.muted = true;
-        try {
-          await videoEl.play();
-          audioMsg.textContent = "Tocca o clicca per attivare la musica";
-        } catch (_) {}
-      }
-      updateUiState();
-    }
+        <article id="inutilita" class="poem-card">
+          <h2 class="poem-title">Inutilità</h2>
+          <p class="poem-meta">Potenza, 1973</p>
+          <div class="poem-verses">È l'acqua della terra
+Che corrode inerte roccia
+È il vento di sabbia
+Che sconvolge futili distese
+È la noia vomito
+Che assale con conati
+È la vita della morte
+Che regge dolorosa il rantolo
+È il mio cuore di gomitolo
+Che si scioglie esile filo
+E tutti inutilmente</div>
+        </article>
 
-    startOnce();
+        <article id="ascolto" class="poem-card">
+          <h2 class="poem-title">Ascolto</h2>
+          <p class="poem-meta">1973</p>
+          <div class="poem-verses">Svegliarsi d'un tratto nel sole
+Al calar della notte
+Nella quiete del tempo
+L'angoscia che passa.
+Tepor d'una sera
+O fresco mattino?
+Non so! non sento! Guardo.
+Il sole colora l'alba o un tramonto?
+Non vedo. Ascolto
+Ascolto soltanto
+Al molo gabbiani
+Gridan tramonti all'alba?
+Ascolto sperando!
+Guardo
+ed ascolto soltanto.</div>
+        </article>
+      </section>
 
-    document.addEventListener("pointerdown", async () => {
-      if (videoEl.muted) {
-        videoEl.muted = false;
-        videoEl.volume = 1.0;
-        try {
-          await videoEl.play();
-          audioMsg.textContent = "";
-        } catch (_) {}
-        updateUiState();
-      }
-    }, { once: true });
+      <section class="poem-triad" aria-label="Blocco di poesie 3">
+        <article id="scario-1973" class="poem-card">
+          <h2 class="poem-title">Sul fiume Scario</h2>
+          <p class="poem-meta">20 dicembre 1973</p>
+          <div class="poem-verses">Ristagna un bagliore.
+E tu riderai
+Delle rose
+Dai rosai del tramonto
+Per te colte
+Fra i rossi dell'acqua.</div>
+        </article>
 
-    audioBtn.addEventListener("click", async (ev) => {
-      ev.stopPropagation();
-      videoEl.muted = !videoEl.muted;
-      videoEl.volume = 1.0;
-      if (videoEl.ended) {
-        videoEl.currentTime = 0;
-      }
-      try {
-        await videoEl.play();
-      } catch (_) {}
-      audioMsg.textContent = "";
-      updateUiState();
-    });
+        <article id="autunno-74" class="poem-card">
+          <h2 class="poem-title">Autunno 74</h2>
+          <p class="poem-meta">Ottobre '74</p>
+          <div class="poem-verses">Sotto un cielo di nubi
+Crepuscola
+Ingiallendo l'autunno
+Tra opposti consuma
+Il silenzio
+Che viene scrosciando
+Più forte di sera
+La pioggia</div>
+        </article>
 
-    videoEl.addEventListener("ended", () => {
-      audioMsg.textContent = "Riproduzione completata";
-    });
+        <article id="deserto" class="poem-card">
+          <h2 class="poem-title">Deserto</h2>
+          <p class="poem-meta">Oasi di vetro, 21 febbraio 1975, ore 24.00</p>
+          <div class="poem-verses">Fa un fiore
+Il deserto
+L'oasi
+Della solitudine
+Dune di parole
+A sciami
+S'infrangono
+E' solo un fiore</div>
+        </article>
+      </section>
 
-    if (navAuthorLink && authorCard) {
-      navAuthorLink.addEventListener("click", () => {
-        authorCard.classList.add("highlight");
-        setTimeout(() => authorCard.classList.remove("highlight"), 1400);
-      });
-    }
-  </script>
-</body>
-</html>
+      <section class="poem-triad" aria-label="Blocco di poesie 4">
+        <article id="cenere" class="poem-card">
+          <h2 class="poem-title">Cenere</h2>
+          <p class="poem-meta">30 dicembre 1975</p>
+          <div class="poem-verses">Presente
+Sempre
+L'arrendevolezza
+Al passato
+Ad ogni mio ritorno.</div>
+        </article>
+
+        <article id="paese-1980" class="poem-card">
+          <h2 class="poem-title">Al mio paese di tanto in tanto</h2>
+          <p class="poem-meta">Agosto 1980</p>
+          <div class="poem-verses">Per la vecchia statale che nella gola sprofonda
+La lingua d'asfalto si perde nel verde
+Paracarri neri e bianchi denti tra l'erbe
+Un tunnel di querce lungo la sponda
+Tutto è rimasto così come allora
+Non si vede gente non c'è una dimora
+Maestoso solo il ponte con il suo arco tondo
+Si rispecchia nel fiume che ristagna sul fondo
+Mi fermo qui sempre
+Ogni volta un incanto
+Una bici rossa sull'Appia antica
+Una carezza di vento una voce amica
+Sussurra sii felice questo è il momento
+Nel giorno che avrai nel cuore un tormento
+Ritorna qui! Ricordi? Qui vicino
+Dopo il ponte la sorgente
+Acqua fresca e un panino.</div>
+        </article>
+
+        <article id="a-me" class="poem-card">
+          <h2 class="poem-title">A me</h2>
+          <p class="poem-meta">Roma, 1 maggio 2005</p>
+          <div class="poem-verses">Per morire andrò molto lontano
+Per non dare fastidio a nessuno
+Nel soffrir cerco sempre qualcuno
+A cui stringere forte la mano
+Pietà per me stesso non vale
+A lenir il dolor che non duole
+Dell'anima che spegnersi vuole
+Nel buio. Un verso mi assale
+.." gli occhi morendo van cercando il sole."
+(verso di Ungaretti o Foscolo?)</div>
+        </article>
+      </section>
+
+      <section class="poem-triad" aria-label="Blocco di poesie 5">
+        <article id="a-pilla" class="poem-card">
+          <h2 class="poem-title">A Pilla</h2>
+          <p class="poem-meta">Roma, 1 maggio 2005</p>
+          <div class="poem-verses">E' l'alba. Dorme Pilla dorme tranquilla
+Al raggio del sole riga in volto una stilla
+Primavere passate son quasi quaranta
+Felicità forse poca, ma fatica tanta
+Meritavi di più! In cucina tre stelle
+N'amatriciana d'accapponare la pelle
+La quarta pei figli che crescesti con cura
+Madre stupenda dono della natura
+Il sole ti riga e un'altra stilla mi dice
+Che non sei contenta non ti ho resa felice
+Non so cosa dire...non so cosa fare
+Vorrei per un attimo il tempo fermare
+Per cercare qualcosa, per trovar le parole
+Asciugare e arrestare quella riga nel sole
+Muto ti guardo .....è vuota la mente
+Ti sfioro il volto così dolcemente
+Come le nuvole nel vento carezzan il cielo
+Tetnaken d'adolos telo
+solo quel verso quel verso immortale
+Può forse dirti quel che all'anima sale
+Solo un grazie! Per la fatica infinita
+Che per tutti sostieni in famiglia la vita
+Ricordo i momenti felici passati
+Ut melius quicquid erit, pati!
+Svegliati il sole nel giardino di Pilla
+Inonda di luce e calore la villa
+Ricorda anche tu!
+quel che dico ogni tanto
+La gioia della vita sei tu!
+Tu soltanto!</div>
+        </article>
+
+        <article id="tempesta" class="poem-card">
+          <h2 class="poem-title">Tempesta di notte</h2>
+          <p class="poem-meta">Scario, 29 luglio 2006</p>
+          <div class="poem-verses">Rompe il sonno un rombo la notte
+Il cane tremante s'accosta al mio letto
+Lei dorme serena non ansima il petto
+Balugina un cielo d'albe interrotte
+Agitan palme le braccia nel vento
+Mi coglie improvviso stupore e spavento
+Il mare e la terra guardo lontano
+Sovrasta su tutto il cielo sovrano
+Scroscia la pioggia con fragore d'incanto
+Vibra coi tuoni il ventre soltanto
+Negli occhi bagliori di luce diluvia
+L'acre odor della terra ora m'inebria
+Tendo le mani, sento tutto me stesso
+O Madre tutt'uno con Te son adesso</div>
+        </article>
+
+        <article id="scario-2009" class="poem-card">
+          <h2 class="poem-title">Scario 30-08-2009</h2>
+          <p class="poem-meta">Scario, 30-08-2009</p>
+          <div class="poem-verses">Fermo è il tempo
+Vola un gabbiano
+Ferme con ali
+Va controvento
+Lampi nel cielo
+Null'altro sento
+Tuono lontano
+Solo un lamento
+Chiara si sveglia
+La sente la mamma
+Intona un canto
+Di ninna nanna
+S'apre nel cuore
+Un filo di luce
+Il canto d'amore
+Materno induce
+Più chiaro lo vedo
+Vibrante lo sento
+Con forza ci credo
+Ora m'attendo
+Per Lei ch'è un incanto
+Una nuova vita
+Felice futuro soltanto
+Stretto fra fragili dita</div>
+        </article>
+      </section>
+
+      <section class="poem-triad" aria-label="Blocco di poesie 6">
+        <article id="soffio" class="poem-card">
+          <h2 class="poem-title">Soffio</h2>
+          <p class="poem-meta">Dicembre 2011</p>
+          <div class="poem-verses">Come
+Disperatamente
+D'acqua un sorso
+Cercando
+Avidamente
+D'un fiato
+Assetato
+Succhiando
+Dalla Sorgente
+Del Tempo
+Così
+Scorre e si perde
+L'unica carezza
+Della vita</div>
+        </article>
+
+        <article id="milano-2012" class="poem-card">
+          <h2 class="poem-title">Milano marzo 2012</h2>
+          <p class="poem-meta">Milano, marzo 2012</p>
+          <div class="poem-verses">E' quasi primavera
+Milano scorre intorno
+Passi lenti nella sera
+Attendo il tuo ritorno
+Nella mente il tuo viso
+Ti aspetto senza rancore
+Sento già il tuo sorriso
+Ma lente corrono l'ore</div>
+        </article>
+
+        <article id="dolomiti" class="poem-card">
+          <h2 class="poem-title">Dolomiti</h2>
+          <p class="poem-meta">Milano, marzo 2012</p>
+          <div class="poem-verses">Svettano le dolomiti nel cielo
+Come il desiderio che ho di te
+L'inverno l'ha coperte di gelo
+Che sol può scioglier
+L'amor tuo per me</div>
+        </article>
+      </section>
+
+      <section class="poem-triad" aria-label="Blocco di poesie 7">
+        <article id="mia-notte" class="poem-card">
+          <h2 class="poem-title">La mia notte</h2>
+          <p class="poem-meta">18 agosto 2012</p>
+          <div class="poem-verses">Sei come questa notte oscura e serena
+Nera vita mia ma tempestata di stelle.
+Rade, men fitte.... più fitte, lontane
+Come attimi di felicità passati
+come ricordi confusi, vivi e vicini
+nel profondo silenzio che mi avvolge
+mentre lentamente muovi il tuo passo
+verso le rosee dita dell'aurora
+fioco un chiarore poco a poco
+offuscherà le stelle lontane
+poco a poco le stelle più vicine.
+nemmeno un ricordo resterà!
+tutto scompare. Ed anche tu
+sempre presente o Luna Nera
+bianca veleggerai nell'alba
+solitaria senza più coro scintillante
+solo laggiù ti sarà compagna Lucifero
+che risveglia il tuo ricordo oscura
+figlia di Ishtar che diffondi
+la tua arte sulla terra per accendere
+altre favelle sempre più lucenti
+grandi e piccole e sempre più numerose
+nella mia scura e dolorosa notte
+finché sarà offuscata la stessa luce del
+giorno
+e la mia notte risplenderà
+più luminosa della luce vitale del sole.</div>
+        </article>
+
+        <article id="raffreddore" class="poem-card">
+          <h2 class="poem-title">Ho il raffreddore</h2>
+          <p class="poem-meta">Roma, 4 gennaio 2014</p>
+          <div class="poem-verses">non sento odore
+neanche il sapore
+si attenua il rumore
+si vela la vista intorno
+amo il silenzio al contorno
+rotto solo dal sordo ronzio
+dell'acufene che preme
+si sente nè mai si perde
+e mi sento disteso nel mare
+dell'oblio senza ricordi
+nè voci nè dell'amore
+il palpito non ardore
+della passione ma per ore
+coccole ed abbracci
+carezze come lacci
+legati con tenerezza
+sulla pelle dalle tue mani
+tutta la notte fino a domani.</div>
+        </article>
+
+        <article id="trota" class="poem-card">
+          <h2 class="poem-title">La trota d'Aosta</h2>
+          <p class="poem-meta">Torre Oliva, Scario, 9 agosto 2019</p>
+          <div class="poem-verses">In valle d'Aosta seduto in panchina
+Nel lago volteggia una trota alpina
+Senza sosta e con un fare ingordo
+Mentre io sonnecchio un po' sul bordo
+Una libellula blu sul pelo vola
+L'istinto la guida a non restar sola
+Vuole un compagno dopo la schiusa
+Riprodurre la specie senza scusa
+Fare l'amore un accoppiamento
+Un guizzo nell'acqua ed in momento
+Ingoiata vien nella bocca del pesce
+Con la sua vita il sogno svanisce</div>
+        </article>
+      </section>
+
+      <section class="poem-triad" aria-label="Blocco di poesie 8">
+        <article id="sera-scario" class="poem-card">
+          <h2 class="poem-title">Sera a Scario</h2>
+          <p class="poem-meta">Ottobre 2021, ore 19</p>
+          <div class="poem-verses">Questa sera non la sento mia
+Neanche una bava di poesia
+Mi assale solo la malinconia
+Che si accompagna alla nostalgia
+Del tempo della fanciullezza mia
+E di quella inconsapevole allegria
+Che allor mi avvolse come una malia
+Sol la vecchiezza la sento mia
+Ma ormai è notte.. e così sia</div>
+        </article>
+
+        <article id="sole-scario" class="poem-card">
+          <h2 class="poem-title">Al sole di Scario</h2>
+          <p class="poem-meta">Pasqua 2022</p>
+          <div class="poem-verses">Disteso al sol su una sdraio
+Nel silenzio scorre
