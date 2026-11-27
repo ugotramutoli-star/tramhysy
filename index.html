@@ -3,351 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAMEASY — Portale Parallelo Statico</title>
-  <style>
-    :root {
-      --bg: #050505;
-      --surface: #0e0e10;
-      --text: #f3f4f6;
-      --muted: #a1a1aa;
-      --gold: #d4af37;
-      --silver: #cbd5e1;
-      --bronze: #c88a5b;
-      --nav-h: 64px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.5;
-      padding-top: var(--nav-h);
-      overflow-x: hidden;
-    }
-
-    /* Barra superiore fissa */
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--nav-h);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      background: rgba(5, 5, 5, 0.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      font-size: 0.95rem;
-    }
-
-    .brand-slot {
-      width: 34px;
-      height: 34px;
-      border-radius: 6px;
-      border: 1px dashed rgba(255, 255, 255, 0.25);
-      display: grid;
-      place-items: center;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      list-style: none;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      opacity: 0.85;
-      transition: opacity 0.2s ease, color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      opacity: 1;
-    }
-
-    .nav-links a.link-a:hover { color: var(--gold); }
-    .nav-links a.link-b:hover { color: var(--silver); }
-    .nav-links a.link-c:hover { color: var(--bronze); }
-
-    /* Sezione video di apertura senza bordi */
-    .hero-video-wrap {
-      position: relative;
-      width: 100%;
-      height: min(72vh, 680px);
-      background: #000;
-      overflow: hidden;
-    }
-
-    .hero-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.16); /* elimina bande/bordi laterali o superiori */
-      transform-origin: center center;
-      display: block;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(5,5,5,0.25) 65%, rgba(5,5,5,0.95) 100%);
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 20px 24px;
-      gap: 12px;
-      pointer-events: none;
-    }
-
-    .hero-caption {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 0.03em;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 10px;
-      pointer-events: auto;
-    }
-
-    .btn-ghost {
-      background: rgba(15, 15, 18, 0.72);
-      color: var(--text);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 7px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
-
-    /* Tre macro colonne A, B, C */
-    .pillars-section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 36px 20px 72px;
-    }
-
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .pillar-card {
-      background: var(--surface);
-      border-radius: 16px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .pillar-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .pillar-a { border-top: 3px solid var(--gold); }
-    .pillar-b { border-top: 3px solid var(--silver); }
-    .pillar-c { border-top: 3px solid var(--bronze); }
-
-    .pillar-a:hover { border-color: var(--gold); }
-    .pillar-b:hover { border-color: var(--silver); }
-    .pillar-c:hover { border-color: var(--bronze); }
-
-    .coin-link {
-      display: block;
-      width: 190px;
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 18px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .pillar-a .coin-link:hover { box-shadow: 0 0 28px rgba(212, 175, 55, 0.35); transform: scale(1.03); }
-    .pillar-b .coin-link:hover { box-shadow: 0 0 28px rgba(203, 213, 225, 0.3); transform: scale(1.03); }
-    .pillar-c .coin-link:hover { box-shadow: 0 0 28px rgba(200, 138, 91, 0.35); transform: scale(1.03); }
-
-    .coin-link img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .pillar-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .pillar-a .pillar-tag { color: var(--gold); }
-    .pillar-b .pillar-tag { color: var(--silver); }
-    .pillar-c .pillar-tag { color: var(--bronze); }
-
-    .pillar-title {
-      font-size: 1.35rem;
-      margin-bottom: 10px;
-    }
-
-    .pillar-summary {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 18px;
-    }
-
-    .pillar-cta {
-      margin-top: auto;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 10px 18px;
-      border-radius: 999px;
-      transition: opacity 0.2s ease, background 0.2s ease;
-    }
-
-    .pillar-a .pillar-cta { background: rgba(212, 175, 55, 0.16); color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.45); }
-    .pillar-b .pillar-cta { background: rgba(203, 213, 225, 0.14); color: var(--silver); border: 1px solid rgba(203, 213, 225, 0.4); }
-    .pillar-c .pillar-cta { background: rgba(200, 138, 91, 0.16); color: var(--bronze); border: 1px solid rgba(200, 138, 91, 0.45); }
-
-    .pillar-cta:hover {
-      opacity: 0.85;
-    }
-
-    @media (max-width: 900px) {
-      .pillars-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        gap: 12px;
-        font-size: 0.82rem;
-      }
-
-      .hero-video-wrap {
-        height: 54vh;
-      }
-    }
-  </style>
+  <title>TRAM HYSY — Ipersimmetria Ω</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="page-home">
 
   <header class="topbar">
-    <a href="#top" class="brand">
-      <span class="brand-slot" id="logo-slot">LOGO</span>
-      <span>TRAMEASY</span>
+    <a href="#top" class="brand" aria-label="Torna all'inizio">
+      <span class="brand-slot" id="logo-slot">
+        <img src="assets/img/respiro.jpg" alt="Logo Respiro — TRAM HYSY" />
+      </span>
+      <span class="brand-name">TRAM HYSY</span>
     </a>
-    <nav>
+
+    <nav aria-label="Navigazione principale">
       <ul class="nav-links">
-        <li><a href="deng.html" class="link-a">A · Deng</a></li>
-        <li><a href="hysy.html" class="link-b">B · HYSY</a></li>
-        <li><a href="nugae.html" class="link-c">C · Nugae</a></li>
+        <li><a href="deng/" class="theme-gold">A · Politica (Deng)</a></li>
+        <li><a href="hysy/fisica-matematica/" class="theme-silver">B · Scienza (HYSY)</a></li>
+        <li><a href="nugae/" class="theme-bronze">C · Poesia (Nugae)</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="top">
-    <section class="hero-video-wrap" aria-label="Video di apertura">
-      <video id="introVideo" class="hero-video" autoplay muted playsinline loop>
-        <source src="assets/video/video_1.mp4" type="video/mp4" />
-      </video>
+    <section class="hero-video-wrap" aria-label="Apertura Ipersimmetria Omega">
+      <video id="introVideo" class="hero-video" src="assets/video/vortice.mp4" autoplay muted playsinline loop preload="auto"></video>
       <div class="hero-overlay">
-        <p class="hero-caption">Dall'Ápeiron alle tre chiavi di lettura: scegli il tuo percorso.</p>
+        <div class="hero-titles">
+          <h1 class="hero-main-title">Ipersimmetria &Omega;</h1>
+          <p class="hero-sub">il respiro dell'&Aacute;peiron &middot; <em>a-metric plenum &Omega;</em></p>
+        </div>
         <div class="hero-actions">
-          <button type="button" class="btn-ghost" id="toggleAudioBtn">Audio On/Off</button>
-          <a href="#pilastri" class="btn-ghost" style="text-decoration:none;">Vai ai pilastri</a>
+          <button type="button" class="btn-chip" id="toggleAudioBtn">Attiva Audio</button>
+          <a href="#pilastri" class="btn-chip">A voi la scelta</a>
         </div>
       </div>
     </section>
 
-    <section id="pilastri" class="pillars-section">
+    <section id="pilastri" class="pillars-section" aria-label="Tre macroaree">
       <div class="pillars-grid">
 
-        <!-- Colonna A: Deng (Oro) -->
-        <article class="pillar-card pillar-a">
-          <a href="deng.html" class="coin-link" aria-label="Apri sezione Deng">
-            <img src="assets/img/deng.jpg" alt="Moneta dorata Deng — Hypersymmetric Ethos" />
+        <!-- A: Deng / Politica (Oro) -->
+        <article class="pillar-card card-gold">
+          <a href="deng/" class="coin-link" aria-label="Apri Politica — Deng">
+            <img src="assets/img/deng.jpg" alt="Moneta dorata Deng — Politica" loading="lazy" />
           </a>
-          <span class="pillar-tag">Pilastro A · Oro</span>
+          <span class="pillar-badge">A · Oro · Politica</span>
           <h2 class="pillar-title">Deng</h2>
-          <p class="pillar-summary">
-            Visione etica, storica e civile in sintesi essenziale. Apri per leggere i testi e i rimandi multimediali.
+          <p class="pillar-text">
+            Architettura etica e ordinamento relazionale in sintesi chiara, con rimandi agli approfondimenti.
           </p>
-          <a href="deng.html" class="pillar-cta">Approfondisci Deng →</a>
+          <a href="deng/" class="pillar-btn">Apri Politica →</a>
         </article>
 
-        <!-- Colonna B: HYSY (Argento) -->
-        <article class="pillar-card pillar-b">
-          <a href="hysy.html" class="coin-link" aria-label="Apri sezione HYSY">
-            <img src="assets/img/hysy.jpg" alt="Moneta argentata HYSY — Hyper-Symmetric Quantum Theory" />
+        <!-- B: HYSY / Scienza (Argento) -->
+        <article class="pillar-card card-silver">
+          <a href="hysy/fisica-matematica/" class="coin-link" aria-label="Apri Scienza — HYSY">
+            <img src="assets/img/hysy.jpg" alt="Moneta argentata HYSY — Scienza" loading="lazy" />
           </a>
-          <span class="pillar-tag">Pilastro B · Argento</span>
+          <span class="pillar-badge">B · Argento · Scienza</span>
           <h2 class="pillar-title">HYSY</h2>
-          <p class="pillar-summary">
-            Il cuore ipersimmetrico tra filosofia e fisica: concetti chiari all'ingresso e formule/file per chi vuole andare a fondo.
+          <p class="pillar-text">
+            Dall'ontologia pre-metrica alla fisica e alla matematica: lettura snella all'ingresso e studio guidato.
           </p>
-          <a href="hysy.html" class="pillar-cta">Approfondisci HYSY →</a>
+          <a href="hysy/fisica-matematica/" class="pillar-btn">Fisica &amp; Matematica →</a>
         </article>
 
-        <!-- Colonna C: Nugae (Bronzo) -->
-        <article class="pillar-card pillar-c">
-          <a href="nugae.html" class="coin-link" aria-label="Apri sezione Nugae">
-            <img src="assets/img/nugae.jpg" alt="Moneta Nugae — Il Mio Tao" />
+        <!-- C: Nugae / Poesia (Bronzo) -->
+        <article class="pillar-card card-bronze">
+          <a href="nugae/" class="coin-link" aria-label="Apri Poesia — Nugae">
+            <img src="assets/img/nugae.jpg" alt="Moneta Nugae — Poesia" loading="lazy" />
           </a>
-          <span class="pillar-tag">Pilastro C · Bronzo</span>
+          <span class="pillar-badge">C · Bronzo · Poesia</span>
           <h2 class="pillar-title">Nugae</h2>
-          <p class="pillar-summary">
-            Versi, frammenti lirici e risonanze interiori in forma agile, con collegamenti a letture e approfondimenti.
+          <p class="pillar-text">
+            Versi, frammenti e risonanze del <em>Mio Tao</em> in forma agile, con rimandi alle raccolte.
           </p>
-          <a href="nugae.html" class="pillar-cta">Approfondisci Nugae →</a>
+          <a href="nugae/" class="pillar-btn">Apri Poesia →</a>
         </article>
 
       </div>
     </section>
   </main>
 
-  <script>
-    const video = document.getElementById("introVideo");
-    const audioBtn = document.getElementById("toggleAudioBtn");
-    audioBtn.addEventListener("click", () => {
-      video.muted = !video.muted;
-      video.play().catch(() => {});
-      audioBtn.textContent = video.muted ? "Attiva Audio" : "Muta Audio";
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>
