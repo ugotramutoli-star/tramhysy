@@ -3,8 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAM HYSY — Divulgativo · Viaggio_apeiron1</title>
+  <title>TRAM HYSY — Divulgativo · VIAGGIO NELL'APEIRON</title>
   <link rel="stylesheet" href="../../css/style.css" />
+  <style>
+    .div-silver-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .div-silver-badge img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(226, 232, 240, 0.45);
+    }
+  </style>
 </head>
 <body>
 
@@ -17,27 +32,32 @@
       <ul class="nav-links">
         <li><a href="../../index.html" class="c-home">Home</a></li>
         <li><a href="../../deng/" class="c-gold">Politica</a></li>
-        <li><a href="../../hysy/fisica-matematica/" class="c-silver">Scienza</a></li>
+        <li><a href="../fisica-matematica/" class="c-silver">Scienza</a></li>
+        <li><a href="./" class="c-silver">Divulgativo</a></li>
         <li><a href="../../nugae/" class="c-bronze">Poesia</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="container">
-    <p class="kicker">Scienza · Divulgativo</p>
-    <h1>Percorso Divulgativo</h1>
+    <div class="div-silver-badge">
+      <img src="../../assets/img/hysy.jpg" alt="Moneta Scienza — HYSY" />
+      <p class="kicker" style="margin-bottom:0;">Scienza · Divulgativo</p>
+    </div>
+    <h1>VIAGGIO NELL'APEIRON</h1>
     <p class="lead">
-      Introduzione visiva e divulgativa al respiro dell'&Aacute;peiron e all'architettura relazionale HYSY.
+      Percorso divulgativo all'interno della sezione scientifica HYSY.
     </p>
 
     <div class="video-grid">
       <article class="video-card">
-        <h2>Viaggio_apeiron1</h2>
+        <h2>VIAGGIO NELL'APEIRON</h2>
         <p>Video divulgativo sul percorso verso l'&Aacute;peiron.</p>
         <div class="video-frame">
-          <video id="apeironVideo" controls playsinline preload="metadata">
+          <video id="apeironTravelVideo" controls playsinline preload="metadata">
+            <source src="../../assets/video/VIAGGIO%20NELL'APEIRON.mp4" type="video/mp4" />
+            <source src="../../assets/video/VIAGGIO%20NELL'APEIRON" type="video/mp4" />
             <source src="../../assets/video/Viaggio_apeiron1.mp4" type="video/mp4" />
-            <source src="../../assets/video/Viaggio_apeiron1" type="video/mp4" />
             Il tuo browser non supporta la riproduzione video HTML5.
           </video>
         </div>
@@ -46,12 +66,20 @@
   </main>
 
   <script>
-    const vid = document.getElementById("apeironVideo");
+    const vid = document.getElementById("apeironTravelVideo");
+    const fallbacks = [
+      "../../assets/video/VIAGGIO%20NELL'APEIRON.mp4",
+      "../../assets/video/VIAGGIO%20NELL'APEIRON",
+      "../../assets/video/Viaggio_apeiron1.mp4",
+      "../../assets/video/viaggio_nell_apeiron.mp4"
+    ];
+    let idx = 0;
+
     if (vid) {
       vid.addEventListener("error", () => {
-        if (!vid.dataset.retried) {
-          vid.dataset.retried = "1";
-          vid.src = "../../assets/video/Viaggio_apeiron1";
+        idx += 1;
+        if (idx < fallbacks.length) {
+          vid.src = fallbacks[idx];
           vid.load();
         }
       });
