@@ -20,7 +20,7 @@
       gap: 22px;
     }
 
-    /* vortice1.jpg senza scritte che ruota sullo schermo */
+    /* Immagine del vortice: ruota un po' e si allontana fino a fermarsi nitida */
     .vortex-spinner-wrap {
       position: absolute;
       inset: 0;
@@ -32,19 +32,30 @@
     }
 
     .vortex-spinner-img {
-      width: 165vmax;
-      height: 165vmax;
+      width: 100%;
+      height: 100%;
       max-width: none;
       object-fit: cover;
-      border-radius: 50%;
-      animation: vortexRotate 42s linear infinite;
+      transform: scale(1.42) rotate(0deg);
       transform-origin: center center;
       will-change: transform;
     }
 
-    @keyframes vortexRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .vortex-spinner-img.is-animating {
+      animation: vortexPullBack 6s cubic-bezier(0.22, 0.85, 0.36, 1) forwards;
+    }
+
+    .vortex-spinner-img.is-settled {
+      transform: scale(1) rotate(28deg);
+    }
+
+    @keyframes vortexPullBack {
+      0% {
+        transform: scale(1.42) rotate(0deg);
+      }
+      100% {
+        transform: scale(1) rotate(28deg);
+      }
     }
 
     .stage-overlay {
@@ -52,10 +63,10 @@
       inset: 0;
       z-index: 2;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.72) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.68) 100%);
     }
 
-    /* Scritte fisse sopra la scena mentre gira */
+    /* Scritte fisse sopra la scena */
     .fixed-title-block {
       position: relative;
       z-index: 3;
@@ -109,7 +120,7 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.92);
     }
 
-    /* Tre monete: appaiono una dopo l'altra a distanza di 1 secondo */
+    /* Tre monete: appaiono dopo che il vortice si è fermato, a distanza di 1 secondo */
     .pillars-row {
       position: relative;
       z-index: 3;
@@ -134,7 +145,7 @@
       transform: translateY(14px) scale(0.96);
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.2s ease;
+      transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s ease;
     }
 
     .pillar-box.is-visible {
@@ -243,7 +254,7 @@
         <p class="fixed-sub-title">il respiro dell'Apeiron</p>
       </div>
 
-      <!-- Le tre monete compaiono una dopo l'altra a distanza di 1 secondo -->
+      <!-- Le tre monete compaiono dopo che il vortice si è fermato, a distanza di 1 secondo -->
       <div class="pillars-row" aria-label="Sezioni del sito">
         <a href="deng/" id="coinGold" class="pillar-box box-gold">
           <img src="assets/img/deng.jpg" alt="Politica" />
@@ -268,12 +279,12 @@
         <div class="en-sub">a-metric plenum &middot; non-perturbative vacuum structure</div>
       </div>
 
-      <!-- Audio / musica -->
+      <!-- Audio MP3 da aggiungere -->
       <audio id="bgMusic" preload="auto" src="assets/audio/tamburi-2001.mp3"></audio>
 
       <div class="audio-row">
         <button type="button" class="btn-audio" id="btnAudio">Attiva Musica</button>
-        <button type="button" class="btn-audio" id="btnReplay">Rivedi Monete</button>
+        <button type="button" class="btn-audio" id="btnReplay">Rivedi Sequenza</button>
         <span class="audio-msg" id="audioMsg"></span>
       </div>
     </section>
@@ -316,39 +327,57 @@
       }
     });
 
-    // Sequenza delle 3 monete: una dopo l'altra a distanza di 1 secondo
+    // Durata in ms del vortice fino a che non si ferma
+    const VORTEX_SETTLE_MS = 6000;
+    const vortexImg = document.getElementById("vortexImg");
     const coins = [
       document.getElementById("coinGold"),
       document.getElementById("coinSilver"),
       document.getElementById("coinBronze")
     ];
-    let coinTimers = [];
+    let timers = [];
 
-    function clearCoinTimers() {
-      coinTimers.forEach((t) => clearTimeout(t));
-      coinTimers = [];
+    function clearAllTimers() {
+      timers.forEach((t) => clearTimeout(t));
+      timers = [];
     }
 
-    function playCoinsSequence(startDelayMs = 2000) {
-      clearCoinTimers();
+    function runIntroSequence() {
+      clearAllTimers();
       coins.forEach((c) => c && c.classList.remove("is-visible"));
 
-      coins.forEach((coin, index) => {
-        if (!coin) return;
-        const timer = setTimeout(() => {
-          coin.classList.add("is-visible");
-        }, startDelayMs + index * 1000);
-        coinTimers.push(timer);
-      });
+      if (vortexImg) {
+        vortexImg.classList.remove("is-settled", "is-animating");
+        void vortexImg.offsetWidth;
+        vortexImg.classList.add("is-animating");
+      }
+
+      // Quando il vortice si ferma (dopo VORTEX_SETTLE_MS), compaiono le monete una ogni 1s
+      const settleTimer = setTimeout(() => {
+        if (vortexImg) {
+          vortexImg.classList.remove("is-animating");
+          vortexImg.classList.add("is-settled");
+        }
+
+        coins.forEach((coin, idx) => {
+          if (!coin) return;
+          const coinTimer = setTimeout(() => {
+            coin.classList.add("is-visible");
+          }, idx * 1000);
+          timers.push(coinTimer);
+        });
+      }, VORTEX_SETTLE_MS);
+
+      timers.push(settleTimer);
     }
 
-    playCoinsSequence(2000);
+    runIntroSequence();
 
     document.getElementById("btnReplay")?.addEventListener("click", () => {
-      playCoinsSequence(0);
+      runIntroSequence();
     });
 
-    // Audio / musica
+    // Audio / musica MP3
     const musicEl = document.getElementById("bgMusic");
     const audioBtn = document.getElementById("btnAudio");
     const audioMsg = document.getElementById("audioMsg");
@@ -386,7 +415,7 @@
           await musicEl.play();
           audioMsg.textContent = "";
         } catch (_) {
-          audioMsg.textContent = "Carica il file audio in assets/audio/tamburi-2001.mp3";
+          audioMsg.textContent = "Carica il file MP3 in assets/audio/tamburi-2001.mp3";
         }
       } else {
         musicEl.pause();
