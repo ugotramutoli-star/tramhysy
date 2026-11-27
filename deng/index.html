@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRAM HYSY — Politica · Sito in costruzione</title>
+  <style>
+    :root {
+      --bg: #050507;
+      --surface: #0e0d09;
+      --text: #f5f4ef;
+      --muted: #b8b29e;
+      --gold: #d4af37;
+      --gold-bright: #ecd06f;
+      --silver: #cbd5e1;
+      --bronze: #c88a5b;
+      --border: rgba(212, 175, 55, 0.25);
+      --nav-h: 60px;
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.65;
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: rgba(5, 5, 7, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.92rem;
+    }
+
+    .brand img {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .c-home { color: var(--text); opacity: 0.85; }
+    .c-home:hover { opacity: 1; }
+    .c-gold { color: var(--gold-bright); }
+    .c-silver { color: var(--silver); }
+    .c-bronze { color: var(--bronze); }
+
+    .wrap {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 36px 18px;
+      background: radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.14), transparent 60%), var(--bg);
+    }
+
+    .box {
+      max-width: 620px;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .coin {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 16px;
+      border: 2px solid var(--gold);
+    }
+
+    .coin img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .kicker {
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: clamp(1.7rem, 3.6vw, 2.3rem);
+      margin-bottom: 10px;
+    }
+
+    .status-pill {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.16);
+      color: var(--gold-bright);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { gap: 10px; font-size: 0.76rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="../index.html" class="brand">
+      <img src="../assets/img/respiro.jpg" alt="Logo Respiro" />
+      <span>TRAM HYSY</span>
+    </a>
+    <nav aria-label="Navigazione">
+      <ul class="nav-links">
+        <li><a href="../index.html" class="c-home">Home</a></li>
+        <li><a href="./" class="c-gold">Politica</a></li>
+        <li><a href="../hysy/fisica-matematica/" class="c-silver">Scienza</a></li>
+        <li><a href="../nugae/" class="c-bronze">Poesia</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="box">
+      <div class="coin">
+        <img src="../assets/img/deng.jpg" alt="Politica" />
+      </div>
+      <p class="kicker">Politica</p>
+      <h1>Sezione Politica</h1>
+      <div class="status-pill">Sito in costruzione</div>
+      <p>
+        I contenuti dedicati all'ordinamento relazionale e ai testi politici sono in fase di preparazione e verranno pubblicati qui.
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>
