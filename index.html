@@ -14,28 +14,102 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 28px 16px 64px;
       background: #000;
       overflow: hidden;
+      gap: 22px;
     }
 
-    video.vortex-bg {
+    /* vortice1.jpg senza scritte che ruota sullo schermo */
+    .vortex-spinner-wrap {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 1;
+      pointer-events: none;
+    }
+
+    .vortex-spinner-img {
+      width: 165vmax;
+      height: 165vmax;
+      max-width: none;
+      object-fit: cover;
+      border-radius: 50%;
+      animation: vortexRotate 42s linear infinite;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    @keyframes vortexRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .stage-overlay {
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.72) 100%);
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.72) 100%);
     }
 
+    /* Scritte fisse sopra la scena mentre gira */
+    .fixed-title-block {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 780px;
+      pointer-events: none;
+    }
+
+    .fixed-main-title {
+      font-size: clamp(1.8rem, 4.4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: #f8fafc;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.88);
+      line-height: 1.15;
+    }
+
+    .fixed-sub-title {
+      margin-top: 4px;
+      font-size: clamp(0.95rem, 2vw, 1.25rem);
+      font-style: italic;
+      color: #e2e8f0;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.88);
+    }
+
+    .fixed-bottom-caption {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      pointer-events: none;
+      margin-top: 4px;
+    }
+
+    .fixed-bottom-caption .en-top {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-weight: 700;
+      color: #f8fafc;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.92);
+    }
+
+    .fixed-bottom-caption .zh-line {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      letter-spacing: 0.14em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.92);
+    }
+
+    .fixed-bottom-caption .en-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.92);
+    }
+
+    /* Tre monete: appaiono una dopo l'altra a distanza di 1 secondo */
     .pillars-row {
       position: relative;
       z-index: 3;
@@ -44,7 +118,6 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      margin: auto;
     }
 
     .pillar-box {
@@ -52,29 +125,32 @@
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      background: rgba(10, 12, 18, 0.78);
+      background: rgba(10, 12, 18, 0.82);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 14px;
       padding: 14px 10px 12px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      opacity: 0;
+      transform: translateY(14px) scale(0.96);
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.2s ease;
     }
 
-    .pillar-box:hover {
-      transform: translateY(-3px);
+    .pillar-box.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      visibility: visible;
+      pointer-events: auto;
     }
 
-    .box-gold {
-      border-top: 3px solid var(--gold);
+    .pillar-box.is-visible:hover {
+      transform: translateY(-3px) scale(1);
     }
 
-    .box-silver {
-      border-top: 3px solid var(--silver);
-    }
-
-    .box-bronze {
-      border-top: 3px solid var(--bronze);
-    }
+    .box-gold { border-top: 3px solid var(--gold); }
+    .box-silver { border-top: 3px solid var(--silver); }
+    .box-bronze { border-top: 3px solid var(--bronze); }
 
     .pillar-box img {
       width: 104px !important;
@@ -92,29 +168,43 @@
       font-weight: 700;
     }
 
-    .box-gold .pillar-name {
-      color: var(--gold);
-    }
-
-    .box-silver .pillar-name {
-      color: var(--silver);
-    }
-
-    .box-bronze .pillar-name {
-      color: var(--bronze);
-    }
+    .box-gold .pillar-name { color: var(--gold); }
+    .box-silver .pillar-name { color: var(--silver); }
+    .box-bronze .pillar-name { color: var(--bronze); }
 
     .audio-row {
       position: absolute;
-      bottom: 16px;
+      bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 3;
+      z-index: 4;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+    }
+
+    @media (max-width: 680px) {
+      .pillars-row {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        gap: 10px;
+      }
+
+      .pillar-box {
+        flex-direction: row;
+        gap: 12px;
+        padding: 8px 12px;
+      }
+
+      .pillar-box img {
+        width: 58px !important;
+        height: 58px !important;
+        max-width: 58px !important;
+        max-height: 58px !important;
+        margin-bottom: 0;
+      }
     }
   </style>
 </head>
@@ -137,28 +227,53 @@
 
   <main id="top">
     <section class="home-stage">
-      <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay playsinline preload="auto"></video>
+      <div class="vortex-spinner-wrap">
+        <img
+          id="vortexImg"
+          class="vortex-spinner-img"
+          src="assets/img/vortice1.jpg"
+          alt="Vortice senza scritte"
+        />
+      </div>
       <div class="stage-overlay"></div>
 
-      <div class="pillars-row">
-        <a href="deng/" class="pillar-box box-gold">
+      <!-- Scritte fisse sopra la scena -->
+      <div class="fixed-title-block">
+        <h1 class="fixed-main-title">Ipersimmetria &Omega;</h1>
+        <p class="fixed-sub-title">il respiro dell'Apeiron</p>
+      </div>
+
+      <!-- Le tre monete compaiono una dopo l'altra a distanza di 1 secondo -->
+      <div class="pillars-row" aria-label="Sezioni del sito">
+        <a href="deng/" id="coinGold" class="pillar-box box-gold">
           <img src="assets/img/deng.jpg" alt="Politica" />
           <span class="pillar-name">politica</span>
         </a>
 
-        <a href="hysy/" class="pillar-box box-silver">
+        <a href="hysy/" id="coinSilver" class="pillar-box box-silver">
           <img src="assets/img/hysy.jpg" alt="Scienza" />
           <span class="pillar-name">scienza</span>
         </a>
 
-        <a href="nugae/" class="pillar-box box-bronze">
+        <a href="nugae/" id="coinBronze" class="pillar-box box-bronze">
           <img src="assets/img/nugae.jpg" alt="Poesia" />
           <span class="pillar-name">poesia</span>
         </a>
       </div>
 
+      <!-- Didascalia fissa in basso -->
+      <div class="fixed-bottom-caption">
+        <div class="en-top">a-metric plenum &Omega;</div>
+        <div class="zh-line">&#26080;&#24230;&#35268;&#20805;&#30408; &Omega;</div>
+        <div class="en-sub">a-metric plenum &middot; non-perturbative vacuum structure</div>
+      </div>
+
+      <!-- Audio / musica -->
+      <audio id="bgMusic" preload="auto" src="assets/audio/tamburi-2001.mp3"></audio>
+
       <div class="audio-row">
-        <button type="button" class="btn-audio" id="btnAudio">Muta Audio</button>
+        <button type="button" class="btn-audio" id="btnAudio">Attiva Musica</button>
+        <button type="button" class="btn-audio" id="btnReplay">Rivedi Monete</button>
         <span class="audio-msg" id="audioMsg"></span>
       </div>
     </section>
@@ -201,84 +316,94 @@
       }
     });
 
-    const videoEl = document.getElementById("vortexVideo");
+    // Sequenza delle 3 monete: una dopo l'altra a distanza di 1 secondo
+    const coins = [
+      document.getElementById("coinGold"),
+      document.getElementById("coinSilver"),
+      document.getElementById("coinBronze")
+    ];
+    let coinTimers = [];
+
+    function clearCoinTimers() {
+      coinTimers.forEach((t) => clearTimeout(t));
+      coinTimers = [];
+    }
+
+    function playCoinsSequence(startDelayMs = 2000) {
+      clearCoinTimers();
+      coins.forEach((c) => c && c.classList.remove("is-visible"));
+
+      coins.forEach((coin, index) => {
+        if (!coin) return;
+        const timer = setTimeout(() => {
+          coin.classList.add("is-visible");
+        }, startDelayMs + index * 1000);
+        coinTimers.push(timer);
+      });
+    }
+
+    playCoinsSequence(2000);
+
+    document.getElementById("btnReplay")?.addEventListener("click", () => {
+      playCoinsSequence(0);
+    });
+
+    // Audio / musica
+    const musicEl = document.getElementById("bgMusic");
     const audioBtn = document.getElementById("btnAudio");
     const audioMsg = document.getElementById("audioMsg");
+
+    function updateAudioBtn() {
+      if (!musicEl || !audioBtn) return;
+      audioBtn.textContent = musicEl.paused ? "Attiva Musica" : "Pausa Musica";
+    }
+
+    async function tryPlayMusic() {
+      if (!musicEl) return;
+      try {
+        musicEl.volume = 1.0;
+        await musicEl.play();
+        audioMsg.textContent = "";
+      } catch (_) {
+        audioMsg.textContent = "Tocca o clicca per avviare la musica";
+      }
+      updateAudioBtn();
+    }
+
+    tryPlayMusic();
+
+    document.addEventListener("pointerdown", () => {
+      if (musicEl && musicEl.paused) {
+        tryPlayMusic();
+      }
+    }, { once: true });
+
+    audioBtn?.addEventListener("click", async (ev) => {
+      ev.stopPropagation();
+      if (!musicEl) return;
+      if (musicEl.paused) {
+        try {
+          await musicEl.play();
+          audioMsg.textContent = "";
+        } catch (_) {
+          audioMsg.textContent = "Carica il file audio in assets/audio/tamburi-2001.mp3";
+        }
+      } else {
+        musicEl.pause();
+      }
+      updateAudioBtn();
+    });
+
+    // Foto autore
     const navAuthorLink = document.getElementById("navAuthorLink");
     const authorCard = document.getElementById("authorCard");
     const authorPhoto = document.getElementById("authorPhoto");
 
-    const photoCandidates = [
-      "assets/img/autore.jpg",
-      "assets/img/FOTO%20UGO.JPG",
-      "assets/img/autore.JPG",
-      "assets/img/FOTO UGO.JPG"
-    ];
-    let photoIdx = 0;
-
     if (authorPhoto) {
       authorPhoto.addEventListener("error", () => {
-        photoIdx += 1;
-        if (photoIdx < photoCandidates.length) {
-          authorPhoto.src = photoCandidates[photoIdx];
-        } else {
-          authorCard.classList.add("no-photo");
-        }
+        authorCard.classList.add("no-photo");
       });
     }
-
-    function updateUiState() {
-      audioBtn.textContent = videoEl.muted ? "Attiva Audio" : "Muta Audio";
-    }
-
-    async function startOnce() {
-      videoEl.loop = false;
-      videoEl.volume = 1.0;
-      try {
-        videoEl.muted = false;
-        await videoEl.play();
-        audioMsg.textContent = "";
-      } catch (e) {
-        videoEl.muted = true;
-        try {
-          await videoEl.play();
-          audioMsg.textContent = "Tocca o clicca per attivare la musica";
-        } catch (_) {}
-      }
-      updateUiState();
-    }
-
-    startOnce();
-
-    document.addEventListener("pointerdown", async () => {
-      if (videoEl.muted) {
-        videoEl.muted = false;
-        videoEl.volume = 1.0;
-        try {
-          await videoEl.play();
-          audioMsg.textContent = "";
-        } catch (_) {}
-        updateUiState();
-      }
-    }, { once: true });
-
-    audioBtn.addEventListener("click", async (ev) => {
-      ev.stopPropagation();
-      videoEl.muted = !videoEl.muted;
-      videoEl.volume = 1.0;
-      if (videoEl.ended) {
-        videoEl.currentTime = 0;
-      }
-      try {
-        await videoEl.play();
-      } catch (_) {}
-      audioMsg.textContent = "";
-      updateUiState();
-    });
-
-    videoEl.addEventListener("ended", () => {
-      audioMsg.textContent = "Riproduzione completata";
-    });
 
     if (navAuthorLink && authorCard) {
       navAuthorLink.addEventListener("click", () => {
