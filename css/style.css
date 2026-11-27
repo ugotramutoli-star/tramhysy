@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 110px;
 }
 
 body {
@@ -265,7 +266,7 @@ video.vortex-bg {
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 18px 68px;
-  scroll-margin-top: calc(var(--nav-h) + 16px);
+  scroll-margin-top: 110px;
 }
 
 .author-card {
@@ -454,7 +455,7 @@ section.study-block {
   border-radius: 14px;
   padding: 24px;
   margin-bottom: 22px;
-  scroll-margin-top: 84px;
+  scroll-margin-top: 110px;
 }
 
 section.study-block h2 {
@@ -601,7 +602,7 @@ th {
   border-radius: 14px;
   padding: 22px;
   margin-bottom: 24px;
-  scroll-margin-top: 86px;
+  scroll-margin-top: 110px;
 }
 
 .note-box h2 {
@@ -650,8 +651,8 @@ th {
   background: var(--card);
   border: 1px solid rgba(200, 138, 91, 0.2);
   border-radius: 14px;
-  padding: 20px 22px;
-  scroll-margin-top: 86px;
+  padding: 22px;
+  scroll-margin-top: 110px;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -663,7 +664,9 @@ th {
 .poem-title {
   font-size: 1.22rem;
   color: var(--bronze-bright);
+  padding-top: 4px;
   margin-bottom: 2px;
+  scroll-margin-top: 110px;
 }
 
 .poem-meta {
