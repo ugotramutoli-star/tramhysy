@@ -3,15 +3,312 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAM HYSY — Fisica &amp; Matematica</title>
-  <link rel="stylesheet" href="../../css/style.css" />
+  <title>TRAM HYSY — Scienza · Fisica &amp; Matematica</title>
+  <style>
+    :root {
+      --bg: #050508;
+      --panel: #0c0e13;
+      --panel-elev: #12151d;
+      --text: #f4f6f9;
+      --muted: #b5becb;
+      --silver: #cbd5e1;
+      --silver-bright: #eef3f8;
+      --silver-dim: #8896a8;
+      --silver-glow: rgba(203, 213, 225, 0.22);
+      --border: rgba(203, 213, 225, 0.22);
+      --border-strong: rgba(226, 232, 240, 0.42);
+      --gold: #d4af37;
+      --bronze: #c88a5b;
+      --nav-h: 60px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 115px; }
+
+    body {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(203, 213, 225, 0.14), transparent 58%),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.65;
+      padding-top: var(--nav-h);
+      overflow-x: hidden;
+    }
+
+    /* Barra superiore fissa */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      background: rgba(5, 5, 8, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.92rem;
+    }
+
+    .brand img {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .c-home { color: var(--text); opacity: 0.86; }
+    .c-home:hover { opacity: 1; }
+    .c-gold { color: var(--gold); }
+    .c-silver { color: var(--silver-bright); }
+    .c-bronze { color: var(--bronze); }
+
+    /* Intestazione elegante in argento con moneta */
+    .silver-hero {
+      border-bottom: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(203, 213, 225, 0.09) 0%, rgba(5, 5, 8, 0) 100%);
+      padding: 38px 20px 32px;
+      text-align: center;
+    }
+
+    .silver-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .silver-coin-ring {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      padding: 3px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 45%, #e2e8f0 75%, #64748b 100%);
+      box-shadow: 0 0 28px var(--silver-glow), inset 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .silver-coin-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #0b0d12;
+    }
+
+    .kicker {
+      font-size: 0.76rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--silver);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 3.8vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.03rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 20px 84px;
+    }
+
+    /* Banner dedicato a Divulgativo dentro Scienza */
+    .divulgativo-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: linear-gradient(135deg, rgba(203, 213, 225, 0.12), rgba(14, 17, 24, 0.95));
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--silver-bright);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .divulgativo-banner:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(203, 213, 225, 0.14);
+    }
+
+    .div-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--silver);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .div-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--silver-bright);
+    }
+
+    .div-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .div-cta {
+      flex-shrink: 0;
+      background: rgba(226, 232, 240, 0.14);
+      border: 1px solid var(--border-strong);
+      color: var(--silver-bright);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Indice riepilogativo */
+    .summary-box {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 2px solid rgba(226, 232, 240, 0.35);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 28px;
+    }
+
+    .summary-title {
+      font-size: 0.8rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toc a {
+      background: var(--panel-elev);
+      border: 1px solid var(--border);
+      color: var(--silver-bright);
+      text-decoration: none;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .toc a:hover {
+      border-color: var(--silver-bright);
+      background: rgba(203, 213, 225, 0.14);
+    }
+
+    section.study-block {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--silver);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 22px;
+      scroll-margin-top: 115px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+    }
+
+    section.study-block h2 {
+      font-size: 1.3rem;
+      color: var(--silver-bright);
+      margin-bottom: 10px;
+    }
+
+    section.study-block h3 {
+      font-size: 1.02rem;
+      color: var(--silver);
+      margin: 16px 0 6px;
+    }
+
+    p { margin-bottom: 12px; }
+    ul { margin: 8px 0 14px 20px; color: var(--muted); }
+    li { margin-bottom: 6px; }
+
+    .formula-box {
+      background: #07080c;
+      border: 1px solid rgba(203, 213, 225, 0.24);
+      border-left: 3px solid var(--silver-bright);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      font-family: "Cambria Math", "Times New Roman", serif;
+      font-size: 1.08rem;
+      color: var(--silver-bright);
+      overflow-x: auto;
+    }
+
+    .table-wrap { overflow-x: auto; margin: 12px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { border: 1px solid rgba(203, 213, 225, 0.16); padding: 9px 11px; text-align: left; }
+    th { background: rgba(203, 213, 225, 0.08); color: var(--silver-bright); }
+
+    @media (max-width: 720px) {
+      .nav-links { gap: 10px; font-size: 0.76rem; }
+      .divulgativo-banner { flex-direction: column; align-items: flex-start; }
+      section.study-block { padding: 18px; }
+    }
+  </style>
 </head>
 <body>
 
-  <header class="topbar topbar-sub">
+  <header class="topbar">
     <a href="../../index.html" class="brand">
-      <img src="../../assets/img/respiro.jpg" alt="Logo TRAM HYSY" />
-      <span class="brand-label">TRAM HYSY</span>
+      <img src="../../assets/img/respiro.jpg" alt="Logo Respiro" />
+      <span>TRAM HYSY</span>
     </a>
     <nav aria-label="Navigazione sezioni">
       <ul class="nav-links">
@@ -24,12 +321,28 @@
     </nav>
   </header>
 
+  <section class="silver-hero">
+    <div class="silver-hero-inner">
+      <div class="silver-coin-ring">
+        <img src="../../assets/img/hysy.jpg" alt="Moneta Argento — Scienza HYSY" />
+      </div>
+      <p class="kicker">Scienza · Framework HYSY</p>
+      <h1>Fisica e Matematica</h1>
+      <p class="lead">
+        Sintesi riepilogativa unica: come l'architettura relazionale pre-metrica passa dall'<em>&Aacute;peiron</em> (&Omega;) e dall'algebra ipersimmetrica alla genesi dello spazio-tempo, del quanto d'azione, della materia e delle equazioni quantistiche.
+      </p>
+    </div>
+  </section>
+
   <main class="container">
-    <p class="kicker">Scienza · Fisica &amp; Matematica</p>
-    <h1>Fisica e Matematica del Framework HYSY</h1>
-    <p class="lead">
-      Sintesi riepilogativa unica: come l'architettura relazionale pre-metrica passa dall'<em>&Aacute;peiron</em> (&Omega;) e dall'algebra ipersimmetrica alla genesi dello spazio-tempo, del quanto d'azione, della materia e delle equazioni quantistiche.
-    </p>
+    <a href="../divulgativo/" class="divulgativo-banner">
+      <div>
+        <p class="div-label">Percorso introduttivo · Video</p>
+        <p class="div-title">Divulgativo — VIAGGIO NELL'APEIRON</p>
+        <p class="div-desc">Apri la sezione divulgativa per guardare il video introduttivo sul respiro dell'&Aacute;peiron.</p>
+      </div>
+      <span class="div-cta">Apri Divulgativo →</span>
+    </a>
 
     <nav class="summary-box" aria-label="Indice riepilogativo">
       <p class="summary-title">Indice riepilogativo della pagina</p>
@@ -132,29 +445,4 @@
       </div>
       <h3>Trasformazione di Madelung e Potenziale Q</h3>
       <p>
-        Scrivendo la funzione d'onda in forma polare &psi; &equiv; R e<sup>iS/&hbar;</sup> (con densit&agrave; &rho; &equiv; R&sup2; e fase/azione S) e separando parte immaginaria e parte reale, si ottiene l'equazione di continuit&agrave; e un'equazione di Hamilton-Jacobi modificata dal <strong>potenziale quantistico</strong> <em>Q</em>:
-      </p>
-      <div class="formula-box">
-        Q &equiv; &minus;(&hbar;&sup2; / 2<u>m</u>) (&nabla;&sup2;R / R)
-      </div>
-      <p>
-        Nel quadro HYSY, <em>Q</em> esprime la pressione geometrica e topologica esercitata dal settore latente sulla metrica emersa: la geometria quantistica riflette la tensione relazionale che impedisce il collasso commutativo.
-      </p>
-    </section>
-
-    <section id="sintesi" class="study-block">
-      <h2>5. Sintesi Top-Down ed Equazione Principe</h2>
-      <p>
-        Il percorso deduttivo <em>Top-Down</em> procede dall'&Aacute;peiron (&Omega;) &rarr; scissione (&Xi;<sub>&oplus;</sub>) &rarr; contrasto e impedenza (<em>Z</em><sub>top</sub>) &rarr; saturazione metrica (spazio, tempo, materia, &hbar;, <em>Q</em>). Il bilancio omeodinamico tra emersione e latenza si riassume nell'equazione principe oscillante attorno alla soglia minima &delta;<sub>0</sub>:
-      </p>
-      <div class="formula-box">
-        (<u>K</u> &gg; &eta;) &Theta; (K &gg; <u>&eta;</u>) &rightleftharpoons; &delta;<sub>0</sub>
-      </div>
-      <p>
-        Finch&eacute; la relazione resta in oscillazione attorno a &delta;<sub>0</sub> senza spegnersi in uno zero inerte, il sistema conserva l'indeterminazione e il divenire.
-      </p>
-    </section>
-  </main>
-
-</body>
-</html>
+        Scrivendo la funzione d'onda in forma polare &psi; &equiv; R e<sup>iS/&hbar;</sup> (con densit&agrave; &rho; &equiv; R&sup2; e fase/azione S) e separando parte immaginaria e parte reale, si ottiene l'equazione di continuit&agrave; e un'equazione di Hamilton
