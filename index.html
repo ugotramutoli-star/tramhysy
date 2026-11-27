@@ -17,7 +17,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 
     body {
       background: var(--bg);
@@ -27,7 +27,6 @@
       overflow-x: hidden;
     }
 
-    /* Barra superiore fissa con link centrati */
     .topbar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -72,7 +71,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 16px;
       list-style: none;
       font-size: 0.85rem;
       white-space: nowrap;
@@ -89,7 +88,6 @@
     .c-author { color: var(--text); opacity: 0.92; }
     .c-author:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
-    /* Scena con vortice a sfondo pieno */
     .stage {
       position: relative;
       width: 100%;
@@ -120,7 +118,6 @@
       background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.72) 100%);
     }
 
-    /* Tre riquadri compatti centrati */
     .pillars-row {
       position: relative;
       z-index: 3;
@@ -199,12 +196,11 @@
       color: var(--muted);
     }
 
-    /* Sezione Autore subito sotto le monete */
     .author-section {
       max-width: 900px;
       margin: 0 auto;
       padding: 40px 18px 68px;
-      scroll-margin-top: calc(var(--nav-h) + 16px);
+      scroll-margin-top: 120px;
     }
 
     .author-card {
@@ -220,14 +216,8 @@
       transition: box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
-    .author-card.no-photo {
-      grid-template-columns: 1fr;
-    }
-
-    .author-card.highlight {
-      border-color: var(--silver);
-      box-shadow: 0 0 28px rgba(203, 213, 225, 0.22);
-    }
+    .author-card.no-photo { grid-template-columns: 1fr; }
+    .author-card.highlight { border-color: var(--silver); box-shadow: 0 0 28px rgba(203, 213, 225, 0.22); }
 
     .author-photo-wrap {
       width: 170px;
@@ -239,9 +229,7 @@
       flex-shrink: 0;
     }
 
-    .author-card.no-photo .author-photo-wrap {
-      display: none;
-    }
+    .author-card.no-photo .author-photo-wrap { display: none; }
 
     .author-photo-wrap img {
       width: 100%;
@@ -260,17 +248,8 @@
       margin-bottom: 4px;
     }
 
-    .author-name {
-      font-size: 1.45rem;
-      margin-bottom: 6px;
-    }
-
-    .author-role {
-      font-size: 0.9rem;
-      color: var(--bronze);
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
+    .author-name { font-size: 1.45rem; margin-bottom: 6px; }
+    .author-role { font-size: 0.9rem; color: var(--bronze); margin-bottom: 12px; font-weight: 600; }
 
     .author-bio p {
       font-size: 0.96rem;
@@ -279,59 +258,20 @@
       margin-bottom: 10px;
     }
 
-    .author-bio p:last-child {
-      margin-bottom: 0;
-    }
+    .author-bio p:last-child { margin-bottom: 0; }
 
     @media (max-width: 780px) {
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        padding: 0 12px;
-      }
-
-      .brand-label {
-        display: none;
-      }
-
-      .nav-links {
-        gap: 10px;
-        font-size: 0.76rem;
-      }
+      .topbar { display: flex; justify-content: space-between; padding: 0 12px; }
+      .brand-label { display: none; }
+      .nav-links { gap: 10px; font-size: 0.76rem; }
     }
 
     @media (max-width: 680px) {
-      .pillars-row {
-        grid-template-columns: 1fr;
-        max-width: 300px;
-        gap: 10px;
-      }
-
-      .pillar-box {
-        flex-direction: row;
-        gap: 12px;
-        padding: 8px 12px;
-      }
-
-      .pillar-box img {
-        width: 58px !important;
-        height: 58px !important;
-        max-width: 58px !important;
-        max-height: 58px !important;
-        margin-bottom: 0;
-      }
-
-      .author-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 20px 16px;
-      }
-
-      .author-photo-wrap {
-        width: 140px;
-        height: 175px;
-        margin: 0 auto;
-      }
+      .pillars-row { grid-template-columns: 1fr; max-width: 300px; gap: 10px; }
+      .pillar-box { flex-direction: row; gap: 12px; padding: 8px 12px; }
+      .pillar-box img { width: 58px !important; height: 58px !important; max-width: 58px !important; max-height: 58px !important; margin-bottom: 0; }
+      .author-card { grid-template-columns: 1fr; text-align: center; padding: 20px 16px; }
+      .author-photo-wrap { width: 140px; height: 175px; margin: 0 auto; }
     }
   </style>
 </head>
@@ -346,6 +286,7 @@
       <ul class="nav-links">
         <li><a href="deng/" class="c-gold">Politica</a></li>
         <li><a href="hysy/fisica-matematica/" class="c-silver">Scienza</a></li>
+        <li><a href="hysy/divulgativo/" class="c-silver">Divulgativo</a></li>
         <li><a href="nugae/" class="c-bronze">Poesia</a></li>
         <li><a href="#autore" id="navAuthorLink" class="c-author">Autore</a></li>
       </ul>
@@ -406,6 +347,18 @@
   </main>
 
   <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    if (window.location.hash === "#autore") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    window.addEventListener("load", () => {
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
+    });
+
     const videoEl = document.getElementById("vortexVideo");
     const audioBtn = document.getElementById("btnAudio");
     const audioMsg = document.getElementById("audioMsg");
