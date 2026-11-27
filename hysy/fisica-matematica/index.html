@@ -4,129 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TRAM HYSY — Fisica &amp; Matematica</title>
-  <style>
-    :root {
-      --bg: #050507;
-      --panel: #0e0e12;
-      --text: #f3f4f6;
-      --muted: #b4b8c2;
-      --gold: #d4af37;
-      --silver: #cbd5e1;
-      --bronze: #c88a5b;
-      --accent: #e2e8f0;
-      --border: rgba(203, 213, 225, 0.16);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.65;
-      padding-top: 64px;
-    }
-    .topbar {
-      position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 18px;
-      background: rgba(5, 5, 5, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .brand {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.06em;
-    }
-    .brand img { width: 34px; height: 34px; border-radius: 6px; object-fit: cover; }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      list-style: none;
-      font-size: 0.85rem;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .c-home { color: var(--text); opacity: 0.85; }
-    .c-home:hover { opacity: 1; }
-    .c-gold { color: var(--gold); }
-    .c-silver { color: var(--silver); }
-    .c-bronze { color: var(--bronze); }
-    .container { max-width: 920px; margin: 0 auto; padding: 36px 20px 84px; }
-    .kicker { color: var(--silver); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
-    h1 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); margin-bottom: 12px; }
-    .lead { color: var(--muted); font-size: 1.05rem; margin-bottom: 24px; }
-    .summary-box {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 20px;
-      margin-bottom: 30px;
-    }
-    .summary-title {
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--silver);
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    .toc {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .toc a {
-      background: #09090c; border: 1px solid var(--border); color: var(--silver);
-      text-decoration: none; padding: 6px 12px; border-radius: 999px; font-size: 0.82rem;
-    }
-    section.study-block {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--silver);
-      border-radius: 14px;
-      padding: 24px;
-      margin-bottom: 22px;
-      scroll-margin-top: 80px;
-    }
-    section.study-block h2 { font-size: 1.3rem; color: var(--accent); margin-bottom: 10px; }
-    section.study-block h3 { font-size: 1.02rem; color: var(--silver); margin: 16px 0 6px; }
-    p { margin-bottom: 12px; }
-    ul { margin: 8px 0 14px 20px; color: var(--muted); }
-    li { margin-bottom: 6px; }
-    .formula-box {
-      background: #070709;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin: 12px 0;
-      font-family: "Cambria Math", "Times New Roman", serif;
-      font-size: 1.08rem;
-      color: #f8fafc;
-      overflow-x: auto;
-    }
-    .table-wrap { overflow-x: auto; margin: 12px 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { border: 1px solid rgba(255,255,255,0.12); padding: 9px 11px; text-align: left; }
-    th { background: rgba(255,255,255,0.04); color: var(--silver); }
-    @media (max-width: 720px) {
-      .nav-links { gap: 10px; font-size: 0.76rem; }
-      section.study-block { padding: 18px; }
-    }
-  </style>
+  <link rel="stylesheet" href="../../css/style.css" />
 </head>
 <body>
 
-  <header class="topbar">
+  <header class="topbar topbar-sub">
     <a href="../../index.html" class="brand">
       <img src="../../assets/img/respiro.jpg" alt="Logo TRAM HYSY" />
-      <span>TRAM HYSY</span>
+      <span class="brand-label">TRAM HYSY</span>
     </a>
     <nav aria-label="Navigazione sezioni">
       <ul class="nav-links">
         <li><a href="../../index.html" class="c-home">Home</a></li>
         <li><a href="../../deng/" class="c-gold">Politica</a></li>
         <li><a href="./" class="c-silver">Scienza</a></li>
+        <li><a href="../divulgativo/" class="c-silver">Divulgativo</a></li>
         <li><a href="../../nugae/" class="c-bronze">Poesia</a></li>
       </ul>
     </nav>
