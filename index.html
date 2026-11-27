@@ -20,7 +20,7 @@
       gap: 22px;
     }
 
-    /* Immagine del vortice: ruota e si allontana fino a fermarsi dritta orizzontalmente (0deg) */
+    /* Immagine del vortice: ruota per 10 secondi e si allontana fino a fermarsi dritta (0deg) */
     .vortex-spinner-wrap {
       position: absolute;
       inset: 0;
@@ -36,25 +36,25 @@
       height: 100%;
       max-width: none;
       object-fit: cover;
-      transform: scale(1.45) rotate(-22deg);
+      transform: scale(1.65) rotate(-360deg);
       transform-origin: center center;
       will-change: transform;
     }
 
     .vortex-spinner-img.is-animating {
-      animation: vortexPullBack 6s cubic-bezier(0.22, 0.85, 0.36, 1) forwards;
+      animation: vortexPullBack 10s cubic-bezier(0.22, 0.85, 0.36, 1) forwards;
     }
 
     .vortex-spinner-img.is-settled {
-      transform: scale(1.18) rotate(0deg);
+      transform: scale(1.06) rotate(0deg);
     }
 
     @keyframes vortexPullBack {
       0% {
-        transform: scale(1.45) rotate(-22deg);
+        transform: scale(1.65) rotate(-360deg);
       }
       100% {
-        transform: scale(1.18) rotate(0deg);
+        transform: scale(1.06) rotate(0deg);
       }
     }
 
@@ -120,7 +120,7 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.92);
     }
 
-    /* Tre monete: appaiono dopo che il vortice si è fermato, a distanza di 1 secondo */
+    /* Tre monete: appaiono dopo i 10 secondi del vortice, a distanza di 1 secondo */
     .pillars-row {
       position: relative;
       z-index: 3;
@@ -254,7 +254,7 @@
         <p class="fixed-sub-title">il respiro dell'Apeiron</p>
       </div>
 
-      <!-- Le tre monete compaiono dopo che il vortice si è fermato, a distanza di 1 secondo -->
+      <!-- Le tre monete compaiono dopo 10 secondi, a distanza di 1 secondo -->
       <div class="pillars-row" aria-label="Sezioni del sito">
         <a href="deng/" id="coinGold" class="pillar-box box-gold">
           <img src="assets/img/deng.jpg" alt="Politica" />
@@ -279,8 +279,11 @@
         <div class="en-sub">a-metric plenum &middot; non-perturbative vacuum structure</div>
       </div>
 
-      <!-- Audio MP3 da aggiungere -->
-      <audio id="bgMusic" preload="auto" src="assets/audio/tamburi-2001.mp3"></audio>
+      <!-- Audio caricato in assets/zarathustra.mp3 (durata 10 secondi) -->
+      <audio id="bgMusic" preload="auto">
+        <source src="assets/zarathustra.mp3" type="audio/mpeg" />
+        <source src="assets/music" type="audio/mpeg" />
+      </audio>
 
       <div class="audio-row">
         <button type="button" class="btn-audio" id="btnAudio">Attiva Musica</button>
@@ -306,4 +309,136 @@
               Nella sua tesi filosofico-scientifica del framework HYSY (<em>HyperSymmetric Quantum Theory</em>), rifiuta gli assoluti statici (zero inerte, identità rigida, vuoto assoluto) a favore di un'ontologia relazionale pre-metrica in divenire: il contrasto asimmetrico genera un'impedenza topologica (<em>Z</em><sub>top</sub>) la cui saturazione fa emergere metrica, spazio-tempo, materia e struttura quantistica.
             </p>
             <p>
-              Nelle poesie de <em>Il mio Tao</em> e <em>Nugae</em>, la
+              Nelle poesie de <em>Il mio Tao</em> e <em>Nugae</em>, la stessa tensione tra ordine e divenire si fa voce vissuta: memorie dei luoghi, affetti, silenzi, passaggi del tempo e slanci interiori che restano irriducibili a qualsiasi schema formale.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    if (window.location.hash === "#autore") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    window.addEventListener("load", () => {
+      if (!window.location.hash) {
+        window.scrollTo(0, 0);
+      }
+    });
+
+    // Durata in ms del vortice fino a che non si ferma (10 secondi sincronizzati con zarathustra.mp3)
+    const VORTEX_SETTLE_MS = 10000;
+    const vortexImg = document.getElementById("vortexImg");
+    const coins = [
+      document.getElementById("coinGold"),
+      document.getElementById("coinSilver"),
+      document.getElementById("coinBronze")
+    ];
+    let timers = [];
+
+    function clearAllTimers() {
+      timers.forEach((t) => clearTimeout(t));
+      timers = [];
+    }
+
+    function runIntroSequence() {
+      clearAllTimers();
+      coins.forEach((c) => c && c.classList.remove("is-visible"));
+
+      if (vortexImg) {
+        vortexImg.classList.remove("is-settled", "is-animating");
+        void vortexImg.offsetWidth;
+        vortexImg.classList.add("is-animating");
+      }
+
+      const settleTimer = setTimeout(() => {
+        if (vortexImg) {
+          vortexImg.classList.remove("is-animating");
+          vortexImg.classList.add("is-settled");
+        }
+
+        coins.forEach((coin, idx) => {
+          if (!coin) return;
+          const coinTimer = setTimeout(() => {
+            coin.classList.add("is-visible");
+          }, idx * 1000);
+          timers.push(coinTimer);
+        });
+      }, VORTEX_SETTLE_MS);
+
+      timers.push(settleTimer);
+    }
+
+    runIntroSequence();
+
+    // Audio / musica MP3 (assets/zarathustra.mp3)
+    const musicEl = document.getElementById("bgMusic");
+    const audioBtn = document.getElementById("btnAudio");
+    const audioMsg = document.getElementById("audioMsg");
+
+    function updateAudioBtn() {
+      if (!musicEl || !audioBtn) return;
+      audioBtn.textContent = musicEl.paused ? "Attiva Musica" : "Pausa Musica";
+    }
+
+    async function tryPlayMusic(restart = false) {
+      if (!musicEl) return;
+      try {
+        if (restart) musicEl.currentTime = 0;
+        musicEl.volume = 1.0;
+        await musicEl.play();
+        audioMsg.textContent = "";
+      } catch (_) {
+        audioMsg.textContent = "Tocca o clicca per avviare la musica";
+      }
+      updateAudioBtn();
+    }
+
+    tryPlayMusic();
+
+    document.addEventListener("pointerdown", () => {
+      if (musicEl && musicEl.paused) {
+        tryPlayMusic();
+      }
+    }, { once: true });
+
+    audioBtn?.addEventListener("click", async (ev) => {
+      ev.stopPropagation();
+      if (!musicEl) return;
+      if (musicEl.paused) {
+        await tryPlayMusic(musicEl.ended);
+      } else {
+        musicEl.pause();
+        updateAudioBtn();
+      }
+    });
+
+    document.getElementById("btnReplay")?.addEventListener("click", () => {
+      runIntroSequence();
+      tryPlayMusic(true);
+    });
+
+    // Foto autore
+    const navAuthorLink = document.getElementById("navAuthorLink");
+    const authorCard = document.getElementById("authorCard");
+    const authorPhoto = document.getElementById("authorPhoto");
+
+    if (authorPhoto) {
+      authorPhoto.addEventListener("error", () => {
+        authorCard.classList.add("no-photo");
+      });
+    }
+
+    if (navAuthorLink && authorCard) {
+      navAuthorLink.addEventListener("click", () => {
+        authorCard.classList.add("highlight");
+        setTimeout(() => authorCard.classList.remove("highlight"), 1400);
+      });
+    }
+  </script>
+</body>
+</html>
