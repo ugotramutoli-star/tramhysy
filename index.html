@@ -85,8 +85,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 24px 16px 28px;
+      justify-content: center;
+      padding: 24px 16px;
       background: #000;
       overflow: hidden;
     }
@@ -97,7 +97,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.15);
+      transform: scale(1.12);
       z-index: 1;
     }
 
@@ -105,26 +105,7 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.72) 100%);
-    }
-
-    .stage-top {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-    }
-
-    .stage-title {
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      font-weight: 700;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.9);
-    }
-
-    .stage-sub {
-      font-size: clamp(0.95rem, 1.7vw, 1.15rem);
-      font-style: italic;
-      color: #e2e8f0;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.68) 100%);
     }
 
     /* Tre riquadri compatti centrati */
@@ -136,7 +117,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      margin: 18px auto;
+      margin: auto;
     }
 
     .pillar-box {
@@ -158,7 +139,6 @@
     .box-silver { border-top: 3px solid var(--silver); }
     .box-bronze { border-top: 3px solid var(--bronze); }
 
-    /* Dimensione rigorosamente bloccata per evitare monete giganti */
     .pillar-box img {
       width: 104px !important;
       height: 104px !important;
@@ -179,20 +159,12 @@
     .box-silver .pillar-name { color: var(--silver); }
     .box-bronze .pillar-name { color: var(--bronze); }
 
-    .stage-bottom {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-    }
-
-    .plenum-title {
-      font-size: clamp(1rem, 2vw, 1.35rem);
-      font-weight: 600;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.9);
-    }
-
     .audio-row {
-      margin-top: 10px;
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -263,11 +235,6 @@
     <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay muted playsinline loop preload="auto"></video>
     <div class="stage-overlay"></div>
 
-    <div class="stage-top">
-      <h1 class="stage-title">Ipersimmetria &Omega;</h1>
-      <p class="stage-sub">il respiro dell'&Aacute;peiron</p>
-    </div>
-
     <div class="pillars-row">
       <a href="deng/" class="pillar-box box-gold">
         <img src="assets/img/deng.jpg" alt="Politica — Deng" />
@@ -285,12 +252,9 @@
       </a>
     </div>
 
-    <div class="stage-bottom">
-      <p class="plenum-title">a-metric plenum &Omega;</p>
-      <div class="audio-row">
-        <button type="button" class="btn-audio" id="btnAudio">Attiva Audio</button>
-        <span class="audio-msg" id="audioMsg"></span>
-      </div>
+    <div class="audio-row">
+      <button type="button" class="btn-audio" id="btnAudio">Attiva Audio</button>
+      <span class="audio-msg" id="audioMsg"></span>
     </div>
   </main>
 
@@ -309,7 +273,7 @@
           audioMsg.textContent = "";
         } else {
           audioBtn.textContent = "Muta Audio";
-          audioMsg.textContent = "Se non c'è audio, controlla che vortice.mp4 abbia una traccia audio";
+          audioMsg.textContent = "";
         }
       } catch (e) {
         audioMsg.textContent = "Riproduzione audio bloccata dal browser";
