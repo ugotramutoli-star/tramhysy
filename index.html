@@ -7,8 +7,9 @@
   <style>
     :root {
       --bg: #050507;
+      --surface: #0c0d11;
       --text: #f5f7fa;
-      --muted: #cbd5e1;
+      --muted: #b8c0cc;
       --gold: #d4af37;
       --silver: #cbd5e1;
       --bronze: #c88a5b;
@@ -76,6 +77,8 @@
     .c-gold { color: var(--gold); }
     .c-silver { color: var(--silver); }
     .c-bronze { color: var(--bronze); }
+    .c-author { color: var(--text); opacity: 0.9; }
+    .c-author:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
 
     /* Scena con vortice a sfondo pieno */
     .stage {
@@ -105,7 +108,7 @@
       position: absolute;
       inset: 0;
       z-index: 2;
-      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.68) 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.72) 100%);
     }
 
     /* Tre riquadri compatti centrati */
@@ -187,6 +190,82 @@
       color: var(--muted);
     }
 
+    /* Sezione Autore subito sotto le monete */
+    .author-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 18px 68px;
+      scroll-margin-top: calc(var(--nav-h) + 16px);
+    }
+
+    .author-card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-left: 4px solid var(--bronze);
+      border-radius: 16px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 24px;
+      align-items: start;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .author-card.highlight {
+      border-color: var(--silver);
+      box-shadow: 0 0 28px rgba(203, 213, 225, 0.22);
+    }
+
+    .author-photo-wrap {
+      width: 170px;
+      height: 210px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #14161d;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      flex-shrink: 0;
+    }
+
+    .author-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .author-kicker {
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .author-name {
+      font-size: 1.45rem;
+      margin-bottom: 6px;
+    }
+
+    .author-role {
+      font-size: 0.9rem;
+      color: var(--bronze);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .author-bio p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      line-height: 1.62;
+      margin-bottom: 10px;
+    }
+
+    .author-bio p:last-child {
+      margin-bottom: 0;
+    }
+
     @media (max-width: 680px) {
       .pillars-row {
         grid-template-columns: 1fr;
@@ -210,7 +289,19 @@
 
       .nav-links {
         gap: 10px;
-        font-size: 0.78rem;
+        font-size: 0.76rem;
+      }
+
+      .author-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 20px 16px;
+      }
+
+      .author-photo-wrap {
+        width: 140px;
+        height: 175px;
+        margin: 0 auto;
       }
     }
   </style>
@@ -222,46 +313,75 @@
       <img src="assets/img/respiro.jpg" alt="Logo Respiro" />
       <span>TRAM HYSY</span>
     </a>
-    <nav aria-label="Pilastri">
+    <nav aria-label="Pilastri e Autore">
       <ul class="nav-links">
         <li><a href="deng/" class="c-gold">A · Politica</a></li>
         <li><a href="hysy/fisica-matematica/" class="c-silver">B · Scienza</a></li>
         <li><a href="nugae/" class="c-bronze">C · Poesia</a></li>
+        <li><a href="#autore" id="navAuthorLink" class="c-author">Autore</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="top" class="stage">
-    <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay playsinline preload="auto"></video>
-    <div class="stage-overlay"></div>
+  <main id="top">
+    <section class="stage">
+      <video id="vortexVideo" class="vortex-bg" src="assets/video/vortice.mp4" autoplay playsinline preload="auto"></video>
+      <div class="stage-overlay"></div>
 
-    <div class="pillars-row">
-      <a href="deng/" class="pillar-box box-gold">
-        <img src="assets/img/deng.jpg" alt="Politica — Deng" />
-        <span class="pillar-name">politica</span>
-      </a>
+      <div class="pillars-row">
+        <a href="deng/" class="pillar-box box-gold">
+          <img src="assets/img/deng.jpg" alt="Politica — Deng" />
+          <span class="pillar-name">politica</span>
+        </a>
 
-      <a href="hysy/fisica-matematica/" class="pillar-box box-silver">
-        <img src="assets/img/hysy.jpg" alt="Scienza — HYSY" />
-        <span class="pillar-name">scienza</span>
-      </a>
+        <a href="hysy/fisica-matematica/" class="pillar-box box-silver">
+          <img src="assets/img/hysy.jpg" alt="Scienza — HYSY" />
+          <span class="pillar-name">scienza</span>
+        </a>
 
-      <a href="nugae/" class="pillar-box box-bronze">
-        <img src="assets/img/nugae.jpg" alt="Poesia — Nugae" />
-        <span class="pillar-name">poesia</span>
-      </a>
-    </div>
+        <a href="nugae/" class="pillar-box box-bronze">
+          <img src="assets/img/nugae.jpg" alt="Poesia — Nugae" />
+          <span class="pillar-name">poesia</span>
+        </a>
+      </div>
 
-    <div class="audio-row">
-      <button type="button" class="btn-audio" id="btnAudio">Muta Audio</button>
-      <span class="audio-msg" id="audioMsg"></span>
-    </div>
+      <div class="audio-row">
+        <button type="button" class="btn-audio" id="btnAudio">Muta Audio</button>
+        <span class="audio-msg" id="audioMsg"></span>
+      </div>
+    </section>
+
+    <section id="autore" class="author-section" aria-label="Profilo dell'Autore">
+      <article id="authorCard" class="author-card">
+        <div class="author-photo-wrap">
+          <img src="assets/img/autore.jpg" alt="Ugo Nicola Tramutoli" />
+        </div>
+        <div>
+          <p class="author-kicker">Autore · Filosofia, Scienza &amp; Poesia</p>
+          <h2 class="author-name">Ugo Nicola Tramutoli</h2>
+          <p class="author-role">Già Presidente Generale del CEI · Ingegnere · Ricercatore &amp; Poeta</p>
+          <div class="author-bio">
+            <p>
+              Dopo una lunga carriera nell'ingegneria e in ENEL — tra progettazione impiantistica e reti di distribuzione — ha guidato dal 2007 al 2013 il Comitato Elettrotecnico Italiano (CEI) come Presidente Generale, maturando un'esperienza solida nella teoria dei sistemi e nella normazione tecnica.
+            </p>
+            <p>
+              Nella sua tesi filosofico-scientifica del framework HYSY (<em>HyperSymmetric Quantum Theory</em>), rifiuta gli assoluti statici (zero inerte, identità rigida, vuoto assoluto) a favore di un'ontologia relazionale pre-metrica in divenire: il contrasto asimmetrico genera un'impedenza topologica ($Z_{\text{top}}$) la cui saturazione fa emergere metrica, spazio-tempo, materia e struttura quantistica.
+            </p>
+            <p>
+              Nelle poesie de <em>Il mio Tao</em> e <em>Nugae</em>, la stessa tensione tra ordine e divenire si fa voce vissuta: memorie dei luoghi, affetti, silenzi, passaggi del tempo e slanci interiori che restano irriducibili a qualsiasi schema formale.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
   </main>
 
   <script>
     const videoEl = document.getElementById("vortexVideo");
     const audioBtn = document.getElementById("btnAudio");
     const audioMsg = document.getElementById("audioMsg");
+    const navAuthorLink = document.getElementById("navAuthorLink");
+    const authorCard = document.getElementById("authorCard");
 
     function updateUiState() {
       audioBtn.textContent = videoEl.muted ? "Attiva Audio" : "Muta Audio";
@@ -315,6 +435,13 @@
     videoEl.addEventListener("ended", () => {
       audioMsg.textContent = "Riproduzione completata";
     });
+
+    if (navAuthorLink && authorCard) {
+      navAuthorLink.addEventListener("click", () => {
+        authorCard.classList.add("highlight");
+        setTimeout(() => authorCard.classList.remove("highlight"), 1400);
+      });
+    }
   </script>
 </body>
 </html>
