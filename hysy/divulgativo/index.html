@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRAM HYSY — Divulgativo · Viaggio_apeiron1</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
 
+  <header class="topbar topbar-sub">
+    <a href="../../index.html" class="brand">
+      <img src="../../assets/img/respiro.jpg" alt="Logo Respiro" />
+      <span class="brand-label">TRAM HYSY</span>
+    </a>
+    <nav aria-label="Navigazione sezioni">
+      <ul class="nav-links">
+        <li><a href="../../index.html" class="c-home">Home</a></li>
+        <li><a href="../../deng/" class="c-gold">Politica</a></li>
+        <li><a href="../../hysy/fisica-matematica/" class="c-silver">Scienza</a></li>
+        <li><a href="../../nugae/" class="c-bronze">Poesia</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <p class="kicker">Scienza · Divulgativo</p>
+    <h1>Percorso Divulgativo</h1>
+    <p class="lead">
+      Introduzione visiva e divulgativa al respiro dell'&Aacute;peiron e all'architettura relazionale HYSY.
+    </p>
+
+    <div class="video-grid">
+      <article class="video-card">
+        <h2>Viaggio_apeiron1</h2>
+        <p>Video divulgativo sul percorso verso l'&Aacute;peiron.</p>
+        <div class="video-frame">
+          <video id="apeironVideo" controls playsinline preload="metadata">
+            <source src="../../assets/video/Viaggio_apeiron1.mp4" type="video/mp4" />
+            <source src="../../assets/video/Viaggio_apeiron1" type="video/mp4" />
+            Il tuo browser non supporta la riproduzione video HTML5.
+          </video>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    const vid = document.getElementById("apeironVideo");
+    if (vid) {
+      vid.addEventListener("error", () => {
+        if (!vid.dataset.retried) {
+          vid.dataset.retried = "1";
+          vid.src = "../../assets/video/Viaggio_apeiron1";
+          vid.load();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
