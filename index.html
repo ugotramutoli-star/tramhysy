@@ -3,133 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRAM HYSY — Ipersimmetria Ω</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>TRAM HYSY — Scienza · HYSY</title>
+  <link rel="stylesheet" href="../css/style.css" />
   <style>
-    .home-stage {
-      position: relative;
-      width: 100%;
-      min-height: calc(100vh - var(--nav-h));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      background: #000;
-      overflow: hidden;
+    .hysy-hub-hero {
+      text-align: center;
+      padding: 40px 20px 30px;
+      border-bottom: 1px solid var(--border-silver);
+      background:
+        radial-gradient(circle at 50% 10%, rgba(226, 232, 240, 0.18), transparent 62%),
+        var(--bg);
     }
 
-    video.vortex-bg {
-      position: absolute;
-      inset: 0;
+    .hysy-aura-coin {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      padding: 3px;
+      margin: 0 auto 14px;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 45%, #e2e8f0 78%, #64748b 100%);
+      box-shadow:
+        0 0 28px rgba(226, 232, 240, 0.38),
+        0 0 56px rgba(148, 163, 184, 0.24);
+    }
+
+    .hysy-aura-coin img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transform: scale(1.12);
-      z-index: 1;
-    }
-
-    .stage-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.72) 100%);
-    }
-
-    .pillars-row {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      max-width: 720px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin: auto;
-    }
-
-    .pillar-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      background: rgba(10, 12, 18, 0.78);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 14px;
-      padding: 14px 10px 12px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .pillar-box:hover {
-      transform: translateY(-3px);
-    }
-
-    .box-gold {
-      border-top: 3px solid var(--gold);
-    }
-
-    .box-silver {
-      border-top: 3px solid var(--silver);
-    }
-
-    .box-bronze {
-      border-top: 3px solid var(--bronze);
-    }
-
-    .pillar-box img {
-      width: 104px !important;
-      height: 104px !important;
-      max-width: 104px !important;
-      max-height: 104px !important;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-      margin-bottom: 10px;
+      background: #090b10;
     }
 
-    .pillar-name {
+    .hysy-brand-title {
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .hysy-hub-sub {
+      color: var(--muted);
       font-size: 0.98rem;
-      font-weight: 700;
+      max-width: 680px;
+      margin: 0 auto;
     }
 
-    .box-gold .pillar-name {
-      color: var(--gold);
+    .chapters-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 24px;
     }
 
-    .box-silver .pillar-name {
-      color: var(--silver);
-    }
-
-    .box-bronze .pillar-name {
-      color: var(--bronze);
-    }
-
-    .audio-row {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
+    .chapter-card {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border-silver);
+      border-left: 4px solid var(--silver);
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .chapter-card:hover {
+      transform: translateX(4px);
+      border-color: var(--accent);
+      background: var(--card);
+    }
+
+    .chapter-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .chapter-path {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .chapter-arrow {
+      color: var(--silver);
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
   </style>
 </head>
 <body>
 
-  <header class="topbar">
-    <a href="#top" class="brand">
-      <img src="assets/img/respiro.jpg" alt="Logo Respiro" />
+  <header class="topbar topbar-sub">
+    <a href="../index.html" class="brand">
+      <img src="../assets/img/respiro.jpg" alt="Logo Respiro" />
       <span class="brand-label">TRAM HYSY</span>
     </a>
-    <nav class="center-nav" aria-label="Sezioni principali">
+    <nav aria-label="Navigazione sezioni">
       <ul class="nav-links">
-        <li><a href="deng/" class="c-gold">Politica</a></li>
-        <li><a href="hysy/" class="c-silver">Scienza</a></li>
-        <li><a href="nugae/" class="c-bronze">Poesia</a></li>
-        <li><a href="#autore" id="navAuthorLink" class="c-author">Autore</a></li>
+        <li><a href="../index.html" class="c-home">Home</a></li>
+        <li><a href="../deng/" class="c-gold">Politica</a></li>
+        <li><a href="./" class="c-silver">Scienza</a></li>
+        <li><a href="../nugae/" class="c-bronze">Poesia</a></li>
       </ul>
-    </nav
+    </nav>
+  </header>
+
+  <main>
+    <section class="hysy-hub-hero">
+      <div class="hysy-aura-coin">
+        <img src="../assets/img/hysy.jpg" alt="Moneta HYSY con aura" />
+      </div>
+      <h1 class="hysy-brand-title">HYSY</h1>
+      <p class="hysy-hub-sub">
+        Architettura del framework e sezioni principali della ricerca scientifica.
+      </p>
+    </section>
+
+    <div class="container">
+      <div class="chapters-list">
+        <a href="divulgativo/" class="chapter-card">
+          <div>
+            <div class="chapter-title">Divulgativo</div>
+            <div class="chapter-path">Video introduttivo: VIAGGIO NELL'APEIRON</div>
+          </div>
+          <span class="chapter-arrow">→</span>
+        </a>
+
+        <a href="filosofia/" class="chapter-card">
+          <div>
+            <div class="chapter-title">Filosofia</div>
+            <div class="chapter-path">Ontologia relazionale e fondamenti</div>
+          </div>
+          <span class="chapter-arrow">→</span>
+        </a>
+
+        <a href="fisica-matematica/" class="chapter-card">
+          <div>
+            <div class="chapter-title">Fisica e Matematica</div>
+            <div class="chapter-path">Stele di Rosetta, algebra ipersimmetrica e derivazione quantistica</div>
+          </div>
+          <span class="chapter-arrow">→</span>
+        </a>
+
+        <a href="ontologia-informatica/" class="chapter-card">
+          <div>
+            <div class="chapter-title">Ontologia Informatica</div>
+            <div class="chapter-path">Strutture informative e modellazione</div>
+          </div>
+          <span class="chapter-arrow">→</span>
+        </a>
+
+        <a href="conclusioni/" class="chapter-card">
+          <div>
+            <div class="chapter-title">Conclusioni</div>
+            <div class="chapter-path">Chiusura e prospettive del framework</div>
+          </div>
+          <span class="chapter-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
